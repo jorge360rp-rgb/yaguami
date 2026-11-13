@@ -1,0 +1,127 @@
+[
+  {
+    "file": "browser-motion-controller.js",
+    "bytes": 5009,
+    "sha256": "fb67bd5707e7ba024cc6e045225c32e1dd01ba1372f08eeb735859bb82a367c2"
+  },
+  {
+    "file": "demo-adapter.js",
+    "bytes": 43883,
+    "sha256": "95ac17c54078c243795ee97c8fb3c186a176a82168d54ba0efcc7551ec9520d6"
+  },
+  {
+    "file": "text-fx-bridge.js",
+    "bytes": 11134,
+    "sha256": "96e8b180e78133447ca2f5d2e4009e3ca607d5ddea6303a48fe2d7d63414df88"
+  },
+  {
+    "file": "Yaguanimix_Motion_Lab_v08_Apple_Style.zip",
+    "bytes": 1297554,
+    "sha256": "ad942a8467247625cc65fd048950af257fc248ed92b29f8e9a5ab8aefd17a162"
+  },
+  {
+    "file": "CHATGPT_PROMPT.md",
+    "bytes": 2538,
+    "sha256": "4d552e6f52188b05d5e65792e5df6a3ab77ff3d7d9df32b2594190d2a9f3d032"
+  },
+  {
+    "file": "browser-motion-controller.js.descarga",
+    "bytes": 5009,
+    "sha256": "fb67bd5707e7ba024cc6e045225c32e1dd01ba1372f08eeb735859bb82a367c2"
+  },
+  {
+    "file": "qwix-enhancements.css",
+    "bytes": 73091,
+    "sha256": "60f49d5f4eb2600273859cda8126ef004a8c7a76433bdf1faead56ba86d35fe0"
+  },
+  {
+    "file": "qwix-enhancements.js",
+    "bytes": 23634,
+    "sha256": "88739693b794fcf5babff3ac0a22cd42cc172deba09abcbd7413f663e8e0d000"
+  },
+  {
+    "file": "index.html",
+    "bytes": 93993,
+    "sha256": "7b020bf570fdcad6d6ac19cebce6e1a53677d1fd8d9749d4e273ab4cdd72652a"
+  },
+  {
+    "file": "qwix-core.js",
+    "bytes": 1311764,
+    "sha256": "24361288c8b70e2311a4ab614a2839c5bf0ff7942623aeee20ac64af6cf3c977"
+  },
+  {
+    "file": "qwix-settings.css",
+    "bytes": 77521,
+    "sha256": "ad0d292cad51b6c9aa2c307e2489d15ca83d582b0b77d28b86479513f83b4042"
+  },
+  {
+    "file": "qwix-fonts.css",
+    "bytes": 1075,
+    "sha256": "9c43ca85df6c033db792bc33f5dc677dc4fd94a9367a17cc5f5a2b63b6896c50"
+  },
+  {
+    "file": "preset-catalog.js",
+    "bytes": 37658,
+    "sha256": "02b11ad64fe4900683368a2f34e35dd348a6f4fa7ec745f10e878e85064f59bb"
+  },
+  {
+    "file": "demo-adapter.js.descarga",
+    "bytes": 43883,
+    "sha256": "95ac17c54078c243795ee97c8fb3c186a176a82168d54ba0efcc7551ec9520d6"
+  },
+  {
+    "file": "qwix-core.css",
+    "bytes": 1238057,
+    "sha256": "6399098211605c09e24eef3dcc33cabfce23853e82c718c6b8eca4d2be426af1"
+  },
+  {
+    "file": "Qwix.html",
+    "bytes": 335349,
+    "sha256": "bfe26f1da324e5202635909fd09847b3eab6c34e1aa7228101515429caa98cc0"
+  },
+  {
+    "file": "qwix-connect.css",
+    "bytes": 30596,
+    "sha256": "d24c535ac5458604916a882b355886ef4ab3b6a04f63ab9d14a2d05075d2595c"
+  },
+  {
+    "file": "qwix-layer-edit.js",
+    "bytes": 63951,
+    "sha256": "35240067f47e1d8da09322851fd999a2fb56deee8edb393e08e17ba3e2d8db61"
+  },
+  {
+    "file": "preset-catalog.js.descarga",
+    "bytes": 37658,
+    "sha256": "02b11ad64fe4900683368a2f34e35dd348a6f4fa7ec745f10e878e85064f59bb"
+  },
+  {
+    "file": "qwix-web-demo-fixes.css",
+    "bytes": 5607,
+    "sha256": "735a48434cd87ac3b1bb330ae784c40a87873882349793cdd58b8d9f09408b9c"
+  },
+  {
+    "file": "qwix-layer-edit.css",
+    "bytes": 86585,
+    "sha256": "111ff7c3fe66aebb4adf265306a5627c2cabaeae380d558052dcfd9e07e84cb3"
+  },
+  {
+    "file": "QWIX_ANIMATION_SPEC.md",
+    "bytes": 40378,
+    "sha256": "145acb1bf410f92b4c45450b77c7275e642101ee99fad38fabc6aaf2f98ff7ae"
+  },
+  {
+    "file": "qwix-enhancements.js.descarga",
+    "bytes": 23634,
+    "sha256": "88739693b794fcf5babff3ac0a22cd42cc172deba09abcbd7413f663e8e0d000"
+  },
+  {
+    "file": "qwix-layer-edit.js.descarga",
+    "bytes": 63951,
+    "sha256": "35240067f47e1d8da09322851fd999a2fb56deee8edb393e08e17ba3e2d8db61"
+  },
+  {
+    "file": "qwix-core.js.descarga",
+    "bytes": 1311764,
+    "sha256": "24361288c8b70e2311a4ab614a2839c5bf0ff7942623aeee20ac64af6cf3c977"
+  }
+]

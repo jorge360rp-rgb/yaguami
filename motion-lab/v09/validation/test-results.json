@@ -1,0 +1,313 @@
+{
+  "presets": [
+    {
+      "preset": "Swing Trail",
+      "pack": "Echo Pack",
+      "samples": 8,
+      "pieces": 8,
+      "totalMs": 820,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Afterimage",
+      "pack": "Echo Pack",
+      "samples": 8,
+      "pieces": 1,
+      "totalMs": 900,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Squeeze Arc",
+      "pack": "Echo Pack",
+      "samples": 8,
+      "pieces": 8,
+      "totalMs": 1545,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Comet",
+      "pack": "Echo Pack",
+      "samples": 8,
+      "pieces": 2,
+      "totalMs": 990,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Scale Pop",
+      "pack": "Echo Pack",
+      "samples": 8,
+      "pieces": 8,
+      "totalMs": 1080,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Tidal Bounce",
+      "pack": "Echo Pack",
+      "samples": 8,
+      "pieces": 8,
+      "totalMs": 1768.682170542636,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Echo Stack",
+      "pack": "Echo Pack",
+      "samples": 8,
+      "pieces": 2,
+      "totalMs": 1720,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Word Slam",
+      "pack": "Echo Pack",
+      "samples": 8,
+      "pieces": 2,
+      "totalMs": 970,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Tilt Drift",
+      "pack": "Echo Pack",
+      "samples": 8,
+      "pieces": 8,
+      "totalMs": 1150,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Letter Rain",
+      "pack": "Echo Pack",
+      "samples": 8,
+      "pieces": 8,
+      "totalMs": 1878.2882882882882,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Halo",
+      "pack": "Echo Pack",
+      "samples": 8,
+      "pieces": 8,
+      "totalMs": 1060,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Slide",
+      "pack": "Apple Style Pack",
+      "samples": 8,
+      "pieces": 8,
+      "totalMs": 1990,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Scale Slam",
+      "pack": "Apple Style Pack",
+      "samples": 8,
+      "pieces": 1,
+      "totalMs": 1300,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Color Scale",
+      "pack": "Apple Style Pack",
+      "samples": 8,
+      "pieces": 1,
+      "totalMs": 900,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Slide Delay",
+      "pack": "Apple Style Pack",
+      "samples": 8,
+      "pieces": 8,
+      "totalMs": 1120,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Bounce Drop",
+      "pack": "Apple Style Pack",
+      "samples": 8,
+      "pieces": 8,
+      "totalMs": 3210,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Blur Rise",
+      "pack": "Apple Style Pack",
+      "samples": 8,
+      "pieces": 2,
+      "totalMs": 1180,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Scale Words",
+      "pack": "Apple Style Pack",
+      "samples": 8,
+      "pieces": 2,
+      "totalMs": 1100,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Slide Rotation",
+      "pack": "Apple Style Pack",
+      "samples": 8,
+      "pieces": 8,
+      "totalMs": 1175,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Scale Tracking",
+      "pack": "Apple Style Pack",
+      "samples": 8,
+      "pieces": 1,
+      "totalMs": 1800,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Red Echo Bounce In",
+      "pack": "Demo Reel Pack",
+      "samples": 8,
+      "pieces": 3,
+      "totalMs": 890,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Red Echo Bounce Out",
+      "pack": "Demo Reel Pack",
+      "samples": 8,
+      "pieces": 3,
+      "totalMs": 940,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Cyan Glide In",
+      "pack": "Demo Reel Pack",
+      "samples": 8,
+      "pieces": 2,
+      "totalMs": 1010,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Cyan Glide Out",
+      "pack": "Demo Reel Pack",
+      "samples": 8,
+      "pieces": 2,
+      "totalMs": 820,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Magenta Snap In",
+      "pack": "Demo Reel Pack",
+      "samples": 8,
+      "pieces": 3,
+      "totalMs": 940,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Magenta Snap Out",
+      "pack": "Demo Reel Pack",
+      "samples": 8,
+      "pieces": 3,
+      "totalMs": 420,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Neon Spin In",
+      "pack": "Demo Reel Pack",
+      "samples": 8,
+      "pieces": 10,
+      "totalMs": 1015,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Neon Spin Out",
+      "pack": "Demo Reel Pack",
+      "samples": 8,
+      "pieces": 10,
+      "totalMs": 665,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Pink Pop In",
+      "pack": "Demo Reel Pack",
+      "samples": 8,
+      "pieces": 6,
+      "totalMs": 725,
+      "referenceFontSize": 32
+    },
+    {
+      "preset": "Rotation Reveal",
+      "pack": "Ghost Pack",
+      "samples": 8,
+      "pieces": 8,
+      "totalMs": 1640,
+      "referenceFontSize": 38
+    },
+    {
+      "preset": "Skew Reveal",
+      "pack": "Ghost Pack",
+      "samples": 8,
+      "pieces": 2,
+      "totalMs": 1015,
+      "referenceFontSize": 38
+    },
+    {
+      "preset": "Bounce Reveal",
+      "pack": "Ghost Pack",
+      "samples": 8,
+      "pieces": 8,
+      "totalMs": 1470,
+      "referenceFontSize": 38
+    },
+    {
+      "preset": "Bounce Rotation Reveal",
+      "pack": "Ghost Pack",
+      "samples": 8,
+      "pieces": 8,
+      "totalMs": 1485,
+      "referenceFontSize": 38
+    }
+  ],
+  "samples": 264,
+  "ui": {
+    "distance": [
+      79.58071448420891,
+      424.4304772491141
+    ],
+    "dropChanged": true,
+    "trackingCentered": true,
+    "scaleLinked": true,
+    "out": true,
+    "order": true,
+    "direction": true
+  },
+  "sequence": [
+    {
+      "preset": "Red Echo Bounce In",
+      "outStart": 1520,
+      "duration": 3.31,
+      "kindOut": "smartBounceReveal"
+    },
+    {
+      "preset": "Cyan Glide In",
+      "outStart": 1970,
+      "duration": 3.97,
+      "kindOut": "smartBounceReveal"
+    },
+    {
+      "preset": "Magenta Snap In",
+      "outStart": 1720,
+      "duration": 3.3,
+      "kindOut": "smartReveal"
+    },
+    {
+      "preset": "Neon Spin In",
+      "outStart": 1775,
+      "duration": 3.42,
+      "kindOut": "smartReveal"
+    }
+  ],
+  "export": {
+    "fps": 60,
+    "frames": 145
+  },
+  "errors": [],
+  "reducedMotion": true
+}

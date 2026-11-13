@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Yaguanimix · Motion Lab v0.9 · Referencia web</title>
+<style>
+:root{color-scheme:dark;--bg:#101115;--surface:#1a1b20;--surface2:#202127;--line:#303039;--pink:#ff5960;--pale:#ff9499;--muted:#9b9ba8;--darkred:#220f13;--white:#fcfcfd}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#101115;color:#f7f7fa;font-family:Manrope,Inter,Arial,sans-serif;font-size:13px}
+button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,select:focus-visible,input:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+body{background:radial-gradient(ellipse at 76% -20%,#26181c 0,transparent 45%),var(--bg)}
+.app{display:grid;grid-template-columns:58px minmax(0,1fr);min-height:100vh}
+.rail{border-right:1px solid #28282e;background:#17181d;display:flex;flex-direction:column;align-items:center;gap:12px;padding:18px 7px;position:sticky;top:0;height:100vh;z-index:10}
+.brand{width:35px;height:35px;display:grid;place-items:center;background:linear-gradient(150deg,#ff646c,#a92f66);color:#180e12;font-weight:900;font-size:17px;border-radius:10px;margin-bottom:22px}
+.rail .railbtn{border:1px solid transparent;background:transparent;color:#94949f;border-radius:11px;width:38px;height:38px;font-size:19px;display:grid;place-items:center}
+.rail .railbtn.active{background:#302127;color:#ff8189;border-color:#54313c}.rail .railbtn:hover{color:#fff}.rail .spacer{flex:1}
+.shell{min-width:0;margin:0 auto;width:min(1370px,100%);padding:26px clamp(18px,4vw,56px) 60px}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-bottom:28px;border-bottom:1px solid #23242b;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;letter-spacing:.045em;font-weight:900;font-size:18px}
+.logo small{font-size:10px;color:#ff9ca1;background:#3b1e26;border:1px solid #6d343f;border-radius:5px;padding:4px 6px;letter-spacing:0}
+.topbar .eyebrow{color:#a0a1ae;font-size:11px}.topbar .rightmeta{display:flex;align-items:center;gap:15px}
+.marker{display:inline-flex;align-items:center;gap:7px;color:#8d8f98;font-size:11px}.marker::before{content:"";width:6px;height:6px;background:#ff606a;border-radius:50%;box-shadow:0 0 8px #ff606a}
+.hero{padding:30px 0 18px;display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.kicker{font-size:10px;font-weight:900;color:#ff9299;letter-spacing:.13em;text-transform:uppercase;margin-bottom:10px}
+h1{font-size:clamp(26px,3vw,42px);line-height:1.1;margin:0;letter-spacing:-.055em}p{color:#92939e;line-height:1.6}.hero p{margin:10px 0 0;max-width:590px}
+.pack-tabs{display:flex;gap:7px;flex-wrap:wrap;padding-bottom:13px}.pack-tabs button{border:1px solid #34343c;color:#c1c1c9;border-radius:8px;background:#1d1e24;padding:11px 13px;font-size:11px;font-weight:800}.pack-tabs button.active{border-color:#ff5960;background:#ff5960;color:#211115}
+.stage{border:1px solid #25252d;border-radius:21px;background:radial-gradient(ellipse at center,#1b1b22 0,#15161b 65%);min-height:500px;padding:20px;box-shadow:0 30px 75px #0005;position:relative;overflow:visible}
+.stage-top{display:flex;align-items:center;justify-content:space-between;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.preset-pill{display:flex;align-items:center;gap:7px;background:#202126;border:1px solid #34353e;padding:7px 12px;border-radius:8px;color:#d6d6dc;font-weight:700;font-size:11px}
+.preset-pill b{display:inline-grid;place-items:center;border-radius:5px;background:#ff6068;color:#3d1218;min-width:25px;height:22px;font-size:10px}
+.stage-grid{display:grid;grid-template-columns:325px minmax(0,1fr);min-height:397px;gap:20px}
+.controls{background:#210f13;border:1px solid #442329;border-radius:13px;box-shadow:0 8px 18px #0008;overflow:hidden;align-self:start;position:relative;z-index:1}
+.mini-preview{height:93px;border-radius:11px;margin:6px;background:#230f14;border:1px solid #42242d;display:grid;place-items:center;overflow:visible;position:relative;font-size:22px;letter-spacing:-.04em;white-space:nowrap}.mini-preview span{font-weight:750}
+.selects{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;padding:8px 7px 5px}
+.selects select{min-width:0;width:100%;background:#321a20;color:#e9dadd;border:1px solid #523039;border-radius:6px;font-size:10px;padding:9px 4px}
+.control-actions{display:grid;grid-template-columns:1fr 76px;gap:6px;padding:1px 7px 6px}
+.primary{border:0;border-radius:8px;background:#ff5e63;color:#291217;font-weight:900;font-size:12px;min-height:35px}.primary:hover{background:#ff7e82}
+.secondary{border:1px solid #57343b;background:#351e24;color:#f0cace;border-radius:8px;font-weight:800;font-size:10px}
+.sliders{max-height:269px;overflow-y:auto;padding:2px 10px 8px;scrollbar-width:thin;scrollbar-color:#74303b #210f13}
+.slider-field{padding:8px 2px 5px;border-bottom:1px solid #371d23}.field-row{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.field-row label{font-size:10px;color:#f2d9dc;font-weight:800}.field-row output{padding:2px 6px;background:#421e26;border-radius:5px;color:#ffa4ab;font-size:10px;font-variant-numeric:tabular-nums}
+.slider-field input[type=range]{display:block;appearance:none;width:100%;height:4px;margin:14px 0 4px;background:#42212a;border-radius:4px;accent-color:#ff8c96;cursor:pointer}
+.slider-field input[type=range]::-webkit-slider-thumb{appearance:none;background:#fff;width:12px;height:12px;border-radius:50%;border:1px solid #eee;box-shadow:0 1px 4px #0006}
+.field-description{font-size:9px;color:#a16e7b;margin-top:4px}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:9px}.colorInput{display:flex;align-items:center;gap:8px;font-size:10px;color:#ecc2c8}.colorInput input{border:0;padding:0;width:25px;height:22px;background:transparent}
+.output-stage{min-width:0;display:flex;flex-direction:column;position:relative;justify-content:space-between;padding:20px 5px 0}
+.display-area{min-height:305px;display:grid;place-items:center;overflow:visible;position:relative}
+.display-area::before{content:"";position:absolute;width:60%;height:60%;border-radius:50%;background:radial-gradient(ellipse,#922b4d19,transparent 65%);filter:blur(38px);pointer-events:none}
+.text-box{white-space:nowrap;position:relative;z-index:1;text-align:center;font-size:clamp(26px,4.1vw,74px);font-weight:850;letter-spacing:-.055em;line-height:1.14}
+.text-box .chars{display:flex;align-items:baseline;justify-content:center;white-space:pre;position:relative;isolation:isolate}
+.text-box .char{display:inline-block;white-space:pre;will-change:transform,opacity,filter;position:relative;transform-origin:50% 60%;transition:none}
+#ghostChars{position:absolute;left:0;right:0;top:0;color:#ff5b90;filter:blur(7px);z-index:-1;opacity:0;pointer-events:none}
+.display-footer{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 8px 0}
+.dots{display:flex;gap:7px;align-items:center}.dots button{width:6px;height:6px;padding:0;border:0;border-radius:50%;background:#43444d}.dots button.selected{width:16px;border-radius:8px;background:#ff6469}
+.animate{min-width:134px;border-radius:50px;height:42px;border:0;background:#ff5d65;color:#211113;font-weight:850}.animate:hover{background:#ff8389}
+.scene-label{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:800;white-space:nowrap}.scene-label i{width:7px;height:7px;border-radius:50%;background:#ff3bd7;box-shadow:0 0 12px currentColor}
+.section-head{margin:32px 0 17px}.section-head small{color:#ff8490;font-weight:900;font-size:10px;letter-spacing:.12em}.section-head h2{font-size:27px;letter-spacing:-.055em;margin:6px 0}.section-head p{font-size:12px;margin:0}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.preset-card{min-width:0;text-align:left;border:1px solid #303039;border-radius:13px;background:linear-gradient(145deg,#202127,#17181d);color:#f4f4f6;padding:7px;box-shadow:0 7px 0 #111216,0 12px 25px #0002;transition:transform .12s,border-color .12s}
+.preset-card:hover{border-color:#fd6c72;transform:translateY(-2px)}.preset-card.active{border-color:#ff605f;box-shadow:0 0 0 2px #ff58612a,0 7px 0 #111216}
+.card-stage{height:125px;border-radius:9px;background:#16171c;border:1px solid #25262b;display:flex;justify-content:center;align-items:center;position:relative;overflow:hidden}
+.card-stage strong{font-size:clamp(16px,2vw,25px);letter-spacing:-.05em;font-weight:850;white-space:nowrap}.card-stage:before{content:"";position:absolute;width:70%;height:60%;background:radial-gradient(ellipse,var(--aura),transparent 70%);filter:blur(17px);opacity:.7}
+.card-stage strong{position:relative}.card-tag{position:absolute;top:8px;right:8px;border:1px solid #35353a;font-size:9px;border-radius:5px;padding:3px 4px;color:#c1c1c8}
+.card-index{position:absolute;top:10px;left:10px;color:#81838b;font-size:9px;font-weight:700}
+.card-name{display:flex;align-items:center;justify-content:space-between;gap:4px;padding:11px 6px 5px;font-weight:850;font-size:13px}.active-indicator{font-size:9px;color:#ff8791;font-weight:900}
+.legend{padding-top:25px;color:#898a94;font-size:11px;line-height:1.8}.legend strong{color:#dddde3}
+.bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:30px;padding-top:15px;border-top:1px solid #303036;color:#8f929c;font-size:11px;flex-wrap:wrap}
+.inputrow{display:flex;gap:6px;align-items:center}.inputrow input{width:min(290px,48vw);background:#202127;color:#fff;border:1px solid #3a3b43;padding:9px 12px;border-radius:8px}
+@media(max-width:940px){.stage-grid{grid-template-columns:295px minmax(0,1fr)}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.shell{padding:20px}.text-box{font-size:clamp(25px,3.9vw,48px)}.stage{padding:13px}}
+@media(max-width:670px){.app{grid-template-columns:43px minmax(0,1fr)}.rail{padding:8px 2px}.brand{width:32px;height:32px}.shell{padding:17px 10px 42px}.stage-grid{grid-template-columns:1fr}.controls{width:100%;max-width:100%}.sliders{max-height:220px}.display-area{min-height:200px}.output-stage{padding:0}.text-box{font-size:clamp(21px,6vw,36px)}.cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.card-stage{height:86px}.card-stage strong{font-size:17px}.card-name{font-size:11px}.stage{min-height:unset}.display-footer{padding-bottom:14px}.animate{min-width:98px}}
+
+.control-tabs{display:flex;margin:2px 8px 4px;gap:4px;padding:4px;background:#160b0d;border:1px solid #49212a;border-radius:8px}
+.control-tabs button{flex:1;min-width:0;background:transparent;color:#b8959b;border:0;border-radius:5px;padding:7px 3px;font-size:10px;font-weight:800}
+.control-tabs button.active{background:#ff6267;color:#270f13}
+.fill-options{display:flex;gap:8px;justify-content:space-between;align-items:center;margin:4px 11px;color:#f5cbd0;font-size:11px;font-weight:800}
+.fill-options label{white-space:nowrap}.fill-options select{width:145px;min-width:0;background:#351820;border:1px solid #6a3642;border-radius:6px;padding:6px;color:#ffc1c7}
+.fill-options[hidden],.fill-caption[hidden],.palette label[hidden]{display:none!important}
+.palette{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;min-height:41px;margin:7px 11px;padding:6px 3px;border-top:1px solid #411e29}
+.palette label{font-size:10px;font-weight:800;color:#f8c8cf;display:flex;align-items:center;gap:5px}.palette input{width:26px;height:23px;background:transparent;border:0;padding:0;cursor:pointer}
+.fill-caption{font-size:10px;line-height:1.4;color:#ba8c98;margin:3px 12px 12px}
+.controls{min-height:0}.sliders{max-height:266px}
+
+/* v0.3: both previews use exactly the same scene graph and render clock */
+.mini-preview{height:119px;overflow:hidden;padding:6px;margin:6px;isolation:isolate;font-size:18px}
+.display-area{overflow:hidden;isolation:isolate;min-height:300px}
+.scene-content{height:100%;width:100%;min-width:0;position:relative;isolation:isolate;font-weight:850;line-height:1.15;letter-spacing:-.045em}
+#stageText{font-size:clamp(28px,4.2vw,70px)}
+#miniScene .scene-content{font-size:clamp(13px,1.35vw,21px)}
+.group-layer{position:absolute;inset:0;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;pointer-events:none}
+.group-layer.ghost-layer{z-index:1}
+.unit-line{display:flex;justify-content:center;align-items:baseline;white-space:pre;min-width:0;flex:0 0 auto}
+.unit-piece{display:inline-block;position:relative;white-space:pre;transform-origin:center center;will-change:transform,filter,opacity;text-rendering:optimizeLegibility;line-height:1.14;flex-shrink:0}
+.transport{margin:9px 8px 0;display:flex;gap:9px;align-items:center;color:#c2b6bc;font-size:10px;min-height:31px}
+.transport-play{height:29px;width:30px;border:1px solid #66313c;border-radius:8px;background:#321b22;color:#fff;font-weight:900}
+.transport input[type=range]{flex:1;accent-color:#ff6470;min-width:40px;cursor:pointer}
+.loop-label{display:flex;gap:4px;align-items:center;white-space:nowrap;color:#c6bdc5;font-size:10px}.loop-label input{accent-color:#ff656c}
+#timeReadout{min-width:76px;white-space:nowrap;font-variant-numeric:tabular-nums;font-size:10px}
+.inputrow{font-size:11px;align-items:center}.inputrow textarea{width:min(250px,34vw);border:1px solid #41414b;background:#202127;color:#fff;border-radius:8px;padding:7px 8px;resize:vertical;font:inherit;line-height:1.3}
+@media(max-width:670px){.transport{margin-bottom:10px}.inputrow textarea{width:52vw}}
+
+/* v0.4 · living gallery previews, same clock and easing sampler as stage. */
+.card-stage {overflow:hidden; isolation:isolate; position:relative;}
+.card-stage .thumb-scene {position:absolute; inset:0; display:flex; align-items:center; justify-content:center; overflow:hidden; pointer-events:none; }
+.card-stage .thumb-row {display:flex; justify-content:center; align-items:baseline; white-space:pre; font-weight:850; font-size:clamp(12px,1.2vw,17px); letter-spacing:-.03em; line-height:1.15; max-width:100%;}
+.card-stage .thumb-piece {display:inline-block; white-space:pre; flex:0 0 auto; position:relative; transform-origin:50% 50%; will-change:transform,opacity;}
+.card-stage .thumb-scene.echo {z-index:0;}
+.card-stage .thumb-scene.front {z-index:1;}
+.card-stage .thumb-live {position:absolute;top:8px;left:8px;font-size:8px;line-height:1;padding:3px 4px;border:1px solid #68424d;border-radius:4px;background:#211518;color:#ffb1b7;font-weight:850;letter-spacing:.08em;z-index:3;}
+.card-stage .card-index {z-index:3;pointer-events:none;}
+@media (prefers-reduced-motion:reduce){.card-stage .thumb-piece {will-change:auto;}}
+
+
+/* v0.5 motion and layout */
+:root{--ymx-ui-fast:120ms;--ymx-ui-base:190ms;--ymx-ui-page:330ms;--ymx-ui-stagger:24ms;--ymx-ui-out:cubic-bezier(.16,1,.3,1);--ymx-ui-bounce:cubic-bezier(.22,1.12,.34,1)}
+.ymx-glyph{display:inline-block;white-space:pre;position:relative;will-change:color,text-shadow}
+.group-layer .ymx-trail{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;pointer-events:none}
+.ymx-trail .unit-line{flex:0 0 auto}
+#ghostChars,#miniGhost{filter:none!important;opacity:1!important;pointer-events:none;z-index:1!important;}
+#mainChars,#miniBase{z-index:2!important}
+.card-stage .thumb-scene.echo{z-index:0;}
+.card-stage .thumb-scene.echo-deep{opacity:.8;}
+.card-stage .thumb-scene.front{z-index:2;}
+.card-stage .thumb-scene{flex-direction:column;}
+.card-stage .thumb-row{min-width:max-content}
+.hold-row{display:grid;grid-template-columns:102px minmax(0,1fr) 38px;gap:7px;align-items:center;padding:6px 9px 9px;color:#e9c5cb;font-size:9px}
+.hold-row input{min-width:0;accent-color:var(--pink)}.hold-row output{text-align:right;color:#ffc1c6;font-variant-numeric:tabular-nums}
+.expert-input{width:100%;height:25px;margin-top:7px;border:1px solid #67313e;border-radius:5px;background:#341a21;color:#f8e4e9;font-size:10px;padding:4px}
+.ymx-status{color:#df9aa4;background:#301820;border-top:1px solid #4b232e;margin:8px 7px 0;padding:7px;font-size:9px;line-height:1.4;border-radius:5px}
+.control-tabs button{min-width:0;padding:7px 5px!important;font-size:9px!important}
+.control-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px}
+@keyframes ymx-page-enter{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ymx-selected-pop{0%{transform:scale(.975)}70%{transform:scale(1.009)}100%{transform:scale(1)}}
+.preset-card{animation:ymx-page-enter var(--ymx-ui-page) var(--ymx-ui-out) both;animation-delay:calc(var(--card-order,0)*var(--ymx-ui-stagger))}
+.pack-tabs button.active{animation:ymx-selected-pop var(--ymx-ui-base) var(--ymx-ui-bounce)}
+@media(max-width:940px){.stage-grid{grid-template-columns:minmax(270px,325px) minmax(0,1fr)}}
+@media(max-width:670px){.hold-row{grid-template-columns:94px minmax(0,1fr) 38px}.control-tabs button{font-size:8px!important}}
+@media(prefers-reduced-motion:reduce){.preset-card,.pack-tabs button.active{animation:none!important}*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+.card-stage .thumb-live{left:auto!important;right:8px!important;top:8px!important}.card-stage .card-index{left:10px!important;right:auto!important}
+/* v0.6: inspector is always visible; only parameter list scrolls. */
+.ymx-motion-inspector{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(0,.92fr);gap:7px;margin:5px 7px 9px;padding:7px;background:#271116;border:1px solid #572a35;border-radius:9px}
+.ymx-curve-pane,.ymx-anchor-pane{min-width:0}.ymx-inspector-title{display:flex;align-items:center;justify-content:space-between;gap:3px;margin:2px 0 5px;color:#f7ced3;font-size:9px}.ymx-inspector-title strong{font-weight:850}.ymx-inspector-title span{font-size:8px;color:#df8c96;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#motionGraph{display:block;width:100%;height:auto;aspect-ratio:220/120;background:#1b0d11;border:1px solid #512631;border-radius:6px;touch-action:none;cursor:crosshair;overflow:visible}#motionGraph .ymx-handle{cursor:grab;touch-action:none}#motionGraph .ymx-handle:active{cursor:grabbing}
+.ymx-curve-actions{display:flex;gap:4px;margin-top:4px}.ymx-curve-actions select{min-width:0;flex:1;color:#f5c1cb;background:#371a22;border:1px solid #67303c;border-radius:5px;font-size:9px;height:25px;padding:2px}
+.ymx-curve-actions button{background:#42202a;color:#ffb2bd;border:1px solid #703743;border-radius:5px;font-size:8px;font-weight:750;padding:1px 5px}
+.ymx-inline-label{display:block;font-size:8px;color:#b78a94;margin:6px 0 3px}.ymx-bezier-numbers{min-width:0;width:100%;border:1px solid #67303c;background:#351920;border-radius:5px;color:#f4d1d7;padding:4px 5px;font-size:9px;font-variant-numeric:tabular-nums}
+.ymx-anchor-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:repeat(3,25px);gap:3px;border:1px solid #63323c;padding:4px;background:linear-gradient(90deg,transparent 48%,#69313a 50%,transparent 52%),linear-gradient(0deg,transparent 48%,#69313a 50%,transparent 52%),#1b0d11;border-radius:6px}
+.ymx-anchor-grid button{padding:0;min-width:0;border:1px solid #44222a;background:#241115;border-radius:4px;color:#8a5863;display:grid;place-items:center;font-size:10px}.ymx-anchor-grid button.active{border-color:#ff6d76;background:#632b38;color:#ffe0e3;box-shadow:0 0 10px #e944593b}
+.ymx-anchor-nums{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:6px}.ymx-anchor-nums label{min-width:0;color:#cc969f;font-size:8px}.ymx-anchor-nums input{width:100%;min-width:0;margin-top:2px;padding:4px 2px 4px 4px;background:#351820;border:1px solid #61303d;color:#ffbdc4;border-radius:4px;font-size:9px}
+.ymx-controls-head{display:flex;align-items:center;justify-content:space-between;gap:5px;margin:6px 10px 0;color:#bd8590;font-size:9px;min-height:22px}.ymx-all-toggle{display:flex;align-items:center;gap:3px;font-size:9px;color:#ddafb7}.ymx-all-toggle input{accent-color:#ff7a84}
+.ymx-extra-actions{display:flex;gap:5px;margin:8px 9px 5px}.ymx-extra-actions button{flex:1;min-height:26px;border:1px solid #66313c;background:#341a20;color:#ffb3ba;font-size:9px;border-radius:6px;font-weight:750}.ymx-extra-actions button[hidden]{display:none}
+.sliders{max-height:350px;overflow-y:auto;scrollbar-width:thin}.selects{padding-top:5px}.stage-grid{align-items:start}.controls{align-self:start}.control-tabs{margin-top:4px}#resetAll{font-size:10px}#resetAll:disabled{opacity:.5}
+.slider-field .ymx-field-pick{width:100%;padding:4px;margin-top:7px;border-radius:5px;background:#341a20;color:#f7c5ce;border:1px solid #68323c;font-size:10px}
+.ymx-field-caption{margin-top:5px;color:#a97f89;font-size:9px;line-height:1.35}
+@media(max-width:950px){.stage-grid{grid-template-columns:minmax(285px,350px) minmax(0,1fr)}}@media(max-width:690px){.ymx-motion-inspector{grid-template-columns:minmax(0,1.7fr) minmax(0,.92fr)}}
+.palette#fillExtraPalette:empty{display:none}.palette#fillExtraPalette{background:#261417;padding:5px 9px}.palette#fillExtraPalette label{display:flex;align-items:center;gap:8px}#fillCaption{font-size:10px;line-height:1.4}
+</style>
+<style>
+@font-face{font-family:YMXGeist;font-style:normal;font-weight:100 900;font-display:block;src:url(data:font/woff2;base64,{{GEIST_BASE64}}) format('woff2')}
+.ymx-fx-host{isolation:isolate;color:#fff;font-family:YMXGeist,"Segoe UI",Arial,sans-serif;font-weight:760;font-synthesis:none;letter-spacing:-.045em;line-height:1.08;display:flex;align-items:center;justify-content:center;position:absolute;inset:0;padding-bottom:2%;pointer-events:none;white-space:pre}
+:root{--ymx-ui-page:430ms;--ymx-ui-out:cubic-bezier(.16,.86,.22,1)}
+@keyframes ymx-page-enter{from{opacity:0;transform:translate3d(0,32px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+.ymx-fx-host span{font-weight:inherit}
+.ymx-thumb-host{position:absolute;inset:0}
+#mainChars,#miniBase{display:block;isolation:isolate}
+#ghostChars,#miniGhost{display:none}
+.ymx-reference-tools{margin:6px 10px;color:#e3bdc8;font-size:10px;line-height:1.5}
+.ymx-reference-tools>div{display:flex;gap:5px;margin-top:7px}
+.ymx-reference-tools button{border:1px solid #66313c;border-radius:6px;background:#321b22;color:#ffe4e8;padding:6px 9px}
+.ymx-reference-tools input{accent-color:#ff656c}
+@media(max-width:670px){.stage-grid{grid-template-columns:minmax(0,1fr)}.shell,.stage,.stage-grid,.controls,.output-stage,.display-area{min-width:0}.controls{width:100%}.ymx-motion-inspector{grid-template-columns:minmax(0,1fr) 100px}.ymx-curve-pane{min-width:0}.ymx-curve-actions{min-width:0}.ymx-curve-actions select{min-width:0;width:100%}.ymx-bezier-numbers{width:100%;min-width:0}.display-footer{flex-wrap:wrap}.dots{gap:5px}.scene-label{white-space:normal}.inputrow{min-width:0;max-width:100%}.inputrow textarea{max-width:100%}.preset-pill{min-width:0;flex-wrap:wrap}.ymx-reference-tools>div{flex-wrap:wrap}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+{{PLAYER_CSS}}</style></head>
+<body>
+<div class="app">
+ <nav class="rail" aria-label="Secciones"><div class="brand">Y</div><button class="railbtn active" title="Motion Lab" aria-label="Motion Lab">◈</button><button class="railbtn" title="Texto" aria-label="Texto">T</button><button class="railbtn" title="Presets" aria-label="Presets">▦</button><button class="railbtn" title="Herramientas" aria-label="Herramientas">⌘</button><div class="spacer"></div><button class="railbtn" title="Prueba independiente" aria-label="Prueba independiente">⚙</button></nav>
+ <main class="shell">
+  <header class="topbar"><div class="logo">YAGUANIMIX <small>MOTION LAB / TEST</small></div><div class="rightmeta"><span class="eyebrow">Prueba web independiente · No conectado a After Effects</span><span class="marker">v0.9 / MOTOR DE REFERENCIA</span></div></header>
+  <div class="hero"><div><div class="kicker">Proyecto · Réplica de referencias</div><h1>Motion Preset Lab</h1><p>Los cuatro packs con el motor de la demo web, curvas editables y revisión fotograma a fotograma.</p></div><div class="pack-tabs" id="packTabs"></div></div>
+  <section class="stage" aria-label="Escenario de pruebas">
+   <div class="stage-top"><div class="preset-pill"><span>Preset</span><b id="shortcode">SB</b><strong id="presetHeading">Smart Bounce Reveal</strong><span style="color:#ff8b91;margin-left:7px">☷</span></div><div style="display:flex;align-items:center;gap:12px;color:#bbb;font-size:11px"><span id="indexText">03 / 11</span><button id="resetAll" title="Restablecer ajustes" style="background:#22232a;border:1px solid #35353e;color:white;border-radius:8px;padding:7px 10px">↺ Valores predeterminados</button></div></div>
+   <div class="stage-grid">
+    <aside class="controls">
+      <div class="mini-preview" id="miniScene" aria-label="Preview del panel, animada y sincronizada"><div class="scene-content"><div id="miniGhost" class="group-layer ghost-layer"></div><div id="miniBase" class="group-layer"></div></div></div>
+      <section class="ymx-motion-inspector" aria-label="Inspector persistente de velocidad y anclaje">
+        <div class="ymx-curve-pane">
+          <div class="ymx-inspector-title"><strong>Curva de movimiento</strong><span id="curveState">Bézier</span></div>
+          <svg id="motionGraph" viewBox="0 0 220 120" role="img" aria-label="Editor Bézier interactivo. Arrastra los puntos rojos para modificar la aceleración" tabindex="0">
+            <path d="M12 12 V104 H208" stroke="#69414a" fill="none" stroke-width="1"/>
+            <path d="M12 58 H208 M110 12 V104" stroke="#48252b" fill="none" stroke-width=".7" stroke-dasharray="3 4"/>
+            <path id="curveHandleA" stroke="#d8777b" stroke-width="1" fill="none"/>
+            <path id="curveHandleB" stroke="#d8777b" stroke-width="1" fill="none"/>
+            <path id="curvePath" stroke="#ff646d" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <circle id="curveDot" r="4" fill="#fff0f0" cx="12" cy="104"/>
+            <circle id="curveP1" class="ymx-handle" r="6" cx="65" cy="54" fill="#ff7378" stroke="#230c12" stroke-width="2"/>
+            <circle id="curveP2" class="ymx-handle" r="6" cx="160" cy="48" fill="#ff7378" stroke="#230c12" stroke-width="2"/>
+          </svg>
+          <div class="ymx-curve-actions"><select id="curvePreset" aria-label="Curva de velocidad"><option value="original">Original</option><option value="linear">Lineal</option><option value="easeOut">Ease Out</option><option value="easeInOut">Ease In/Out</option><option value="snappy">Snappy</option><option value="overshoot">Overshoot</option><option value="custom">Personalizada</option></select><button id="saveCurve" title="Guardar curva en el navegador" type="button">Guardar</button></div>
+          <label class="ymx-inline-label" for="curveNumbers">x1, y1, x2, y2</label><input id="curveNumbers" class="ymx-bezier-numbers" spellcheck="false" value="0.16, 1, 0.3, 1" aria-label="Coordenadas Bézier x1, y1, x2, y2">
+        </div>
+        <div class="ymx-anchor-pane">
+          <div class="ymx-inspector-title"><strong>Anchor</strong><span id="anchorState">Custom</span></div>
+          <div class="ymx-anchor-grid" id="anchorGrid" role="group" aria-label="Posición del punto de anclaje"></div>
+          <div class="ymx-anchor-nums"><label>X<input id="anchorXNumber" type="number" step="1" min="-350" max="350" aria-label="Anchor X"></label><label>Y<input id="anchorYNumber" type="number" step="1" min="-350" max="350" aria-label="Anchor Y"></label></div>
+        </div>
+      </section>
+      <div class="selects"><select id="io" aria-label="Entrada y salida"><option>IN</option><option>OUT</option><option>IN &amp; OUT</option></select><select id="direction"><option>Custom</option><option>Up</option><option>Down</option><option>Left</option><option>Right</option></select><select id="unit"><option>Letters</option><option>Words</option><option>Lines</option></select><select id="order"><option>From Start</option><option>From End</option><option>Center Out</option><option>Center In</option><option>Random</option><option>All at Once</option><option>Custom Index</option></select></div>
+      <div class="hold-row"><label for="holdSeconds">Hold IN → OUT</label><input type="range" id="holdSeconds" min="0" max="4" step=".05" value=".5"><output id="holdValue">0.50 s</output></div><div class="control-actions"><button class="primary" id="apply">Apply</button><button class="secondary" id="clear">Clear</button></div>
+      <div class="ymx-reference-tools"><label style="display:block"><input type="checkbox" id="referenceText" checked> Texto original de la web</label><label><input type="checkbox" id="webSequence"> Secuencia IN/OUT original (Demo Reel)</label><div><button type="button" id="prevFrame" title="Retroceder un fotograma">−1 f</button><button type="button" id="nextFrame" title="Avanzar un fotograma">+1 f</button><button type="button" id="exportFrames">Exportar 60 fps</button></div></div><div class="control-tabs" id="controlTabs"><button data-tab="fill">● Fill</button><button class="active" data-tab="motion">Motion</button><button data-tab="trails">Ghost / Echo</button><button data-tab="advanced">Advanced</button></div>
+      <div id="fillOptions" class="fill-options"><label for="fillMode">Fill mode</label><select id="fillMode"><option value="With Reveal">With Reveal</option><option value="Sweep">Sweep</option><option value="Per Piece">Per Piece</option></select></div>
+      <div class="fill-options" id="unitOptions"><label for="fillUnit">Fill Unit</label><select id="fillUnit"><option>Letters</option><option>Words</option><option>Lines</option></select></div>
+      <div class="fill-options" id="directionOptions"><label for="fillDirection">Fill Direction</label><select id="fillDirection"><option>From Start</option><option>From End</option><option>Center Out</option><option>Center In</option></select></div>
+      <div class="ymx-controls-head"><span id="controlContext">Ajustes de este preset</span><label class="ymx-all-toggle"><input type="checkbox" id="showAllControls"> Todos</label></div>
+      <div class="sliders" id="sliders" aria-label="Parámetros del efecto"></div>
+      <div class="ymx-extra-actions"><button type="button" id="addColorPass">+ Añadir Fill</button><button type="button" id="resetLocal">↺ Restablecer preset</button></div>
+      <div class="palette" id="palette"><label>Base <input type="color" id="fillColor" value="#fff9fc"></label><label>Fill 1 <input type="color" id="fillOneColor" value="#ff9c54"></label><label>Fill 2 <input type="color" id="fillTwoColor" value="#ff328d"></label><label>Fill 3 <input type="color" id="fillThreeColor" value="#a755ff"></label><label>Echo <input type="color" id="echoColor" value="#f439ba"></label></div><div class="palette" id="fillExtraPalette"></div>
+      <p id="ymxStatus" role="status" class="ymx-status">Modo web: la configuración exporta JSON; la aplicación real en After Effects requiere validación independiente.</p><p class="fill-caption" id="fillCaption">With Reveal · el color acompaña la aparición de cada unidad de texto.</p>
+    </aside>
+    <div class="output-stage">
+     <div class="display-area" id="bigScene"><div class="scene-content" id="stageText"><div class="group-layer ghost-layer" id="ghostChars"></div><div class="group-layer" id="mainChars"></div></div></div>
+     <div class="display-footer"><div class="dots" id="dots"></div><button id="animate" class="animate">↻ &nbsp; Replay</button><div class="scene-label"><i id="effectDot"></i><span id="effectLabel">Squeeze Arc</span></div></div><div class="transport"><button id="playPause" class="transport-play" type="button" aria-label="Pausar">Ⅱ</button><input id="seek" type="range" min="0" max="1000" step="1" value="0" aria-label="Posición de reproducción"><span id="timeReadout">0.00 / 0.00 s</span><label class="loop-label"><input id="loop" type="checkbox" checked> Loop</label></div>
+    </div>
+   </div>
+  </section>
+  <section><div class="section-head"><small id="packEyebrow">IN THIS PACK</small><h2 id="cardHeadline">All 11 presets</h2><p>Haz clic en cualquier preset para cargarlo en el escenario. Cambia los parámetros y pulsa Animate.</p></div><div class="cards" id="cards"></div></section>
+  <div class="bottom"><div><strong>Modo de evaluación:</strong> el escenario y las miniaturas usan el renderizador de la demo web. Puedes pausar, avanzar a 60 fps y exportar las poses para After Effects.</div><label class="inputrow">Texto de prueba <textarea id="sampleText" aria-label="Texto de prueba, admite saltos de línea" maxlength="100" rows="2">Meet Qwix</textarea></label><button id="twoLines" class="secondary" type="button" style="padding:9px 13px">Probar 2 líneas</button></div>
+  <div class="legend"><strong>Referencia web:</strong> motor TextFxPlayer de qwixplugin.com/presets, con sus fórmulas de movimiento, Fill, Echo y Ghost. Tipografía Geist incluida. La reconstrucción y validación en After Effects corresponde a la siguiente fase.</div>
+ </main>
+</div>
+<script>{{ENGINE}}</script>
+<script>{{CATALOG}}</script>
+<script>{{UI}}</script>
+</body>
+</html>

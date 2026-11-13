@@ -1,0 +1,102 @@
+{
+  "retrievedAt": "2026-11-13",
+  "sourcePage": "https://qwixplugin.com/presets",
+  "renderer": {
+    "url": "https://qwixplugin.com/_next/static/chunks/2y5enb9abei6b.js",
+    "module": 33879,
+    "moduleSha256": "ff988f9189d3b280c4cddafdd133d8373f4dd3ce776010c1cf1af7c3bf456bdd",
+    "bodyChanges": [
+      "Only module export changed to window.YMXTextFxPlayer; formulas unchanged"
+    ]
+  },
+  "sourceAssets": [
+    {
+      "file": "1dx1e2nz4o_5i.js",
+      "sha256": "a5688a2da4df8f066a2f9895a022e1ca7c6f3ca419a7b5bce6d4828e7e5a8961"
+    },
+    {
+      "file": "24i41og7rbo7v.css",
+      "sha256": "adfcf8cbf475bfe997e7a50a0393f5c5b01cc47a1ce8c5c391dd35c3a19ebeb8"
+    },
+    {
+      "file": "3nf2t8i3apfjd.js",
+      "sha256": "8a303f29465b013bd99935f34a47c418ffe067c812e1149d88fdd7737531d485"
+    },
+    {
+      "file": "1_5pwd7-h27_v.js",
+      "sha256": "5575682d7f36e2a48cd56ba646c8c1d8a805c494e0471dd0946ff29b130e1bbe"
+    },
+    {
+      "file": "2_pjtnfwugwqo.js",
+      "sha256": "82b5d9b8075a359e240a3ee490709163651aad79e741f317014aad3e668db6f8"
+    },
+    {
+      "file": "16us1xys5_ov3.css",
+      "sha256": "bab35cb8e241a4f174bedfbe98a7fdc66676c569563fbbe226cbd2dccb2a3bb7"
+    },
+    {
+      "file": "3tof9fh-onfb-.js",
+      "sha256": "26dd250891c5e4bc08d606b835a650ce2d70a0f5bef32c20dfb97bad75a01a20"
+    },
+    {
+      "file": "19ikhxkmji0om.js",
+      "sha256": "6371b34e0fee1ac06c79d8cf0084e094d00a420684317b4e92753b307c74ce09"
+    },
+    {
+      "file": "0t3dfxdkwczdt.js",
+      "sha256": "521e5c25681dd00b0d30ce5a9bf92acf1bb76bde452b770f612ca0d1d118fa5e"
+    },
+    {
+      "file": "1y3vvd7dd7-3y.css",
+      "sha256": "44c059f78004d7beb70bd60be07964fd8cda0b287351f267e6b55e77663503bc"
+    },
+    {
+      "file": "0jubty45h__ir.js",
+      "sha256": "9619db7ec5060ef98b22b32d8629447cf45e26a5228190d80d694c61db11c2d5"
+    },
+    {
+      "file": "2y5enb9abei6b.js",
+      "sha256": "579892caf18a8f4e19dbad5078e21ec56815f85b2ec72a7835bb85054ced3253"
+    },
+    {
+      "file": "0cz1d0mv5g_q7.js",
+      "sha256": "0973c1d64c88adc8e3c950410cb58b288f72118d5965b78049438deb8f2f9683"
+    },
+    {
+      "file": "2iho8jepmwwua.js",
+      "sha256": "317b6e438c77d4bfd1e1d9143827405545e7753c7ea3cb8027bd01328b5da3e0"
+    },
+    {
+      "file": "19f7691y-9-8l.js",
+      "sha256": "8c0524baf35ba532cf04aef0a031528239ee11fd42bd8cf3cd3312b4eb941840"
+    },
+    {
+      "file": "turbopack-0xkkpometta0m.js",
+      "sha256": "b9e3e86a78ea98393d19f6362cf8a4d433b7ec305d29a027644aad8c72f91150"
+    },
+    {
+      "file": "3da8s_6m3w87x.js",
+      "sha256": "59e7b7927ce1393fc00ce9a549f2ea27d9be5e618783ce2fc03c8b27ac8eb009"
+    },
+    {
+      "file": "2l7smugx4f7k4.js",
+      "sha256": "bf644c07741e271281b97a4e5f7a9be423bba5c7cbe6276e052cd85dd6231f7b"
+    },
+    {
+      "file": "2wr_z5boyy01x.js",
+      "sha256": "073ede01b772664b626f7c9b7630cca69e64b31934afdb48214044058d7ccf32"
+    },
+    {
+      "file": "2ksr_leezyh3g.css",
+      "sha256": "22107b17e313ea11763cbef0d69510289b9659661b7eee5b6ffadf8ce8c1f956"
+    },
+    {
+      "file": "2q8pk1oslbih9.css",
+      "sha256": "b16d394161055a59fa83257369d994ba87fab0a19f17831744d30b38f83e4f16"
+    },
+    {
+      "file": "3jhk61fidsx37.js",
+      "sha256": "fc8db535cdcc53363476027b42d090e04dd013df65de03f33d1a8908d225b57a"
+    }
+  ]
+}
