@@ -1,6 +1,11 @@
 // Shared helpers for the new modules. Original Animix identifiers stay compatible.
 var YaguaHost=(function(){
- var H={};H.root=typeof $!=="undefined"?File($.fileName).parent.parent.fsName:"";
+ var H={root:""};
+ // CEP supplies a stable root explicitly; $.fileName may be empty during evalScript.
+ if(typeof $!=="undefined"){
+  if($._yaguaExtensionRoot)H.root=String($._yaguaExtensionRoot);
+  else try{var entry=new File($.fileName);if(entry.exists&&entry.parent&&entry.parent.parent)H.root=entry.parent.parent.fsName;}catch(ignoreRoot){}
+ }
  H.fail=function(message){throw new Error(message);};
  H.comp=function(){var c=app.project.activeItem;if(!(c instanceof CompItem))H.fail("Abre una composición.");return c;};
  H.layers=function(){var c=H.comp();if(!c.selectedLayers.length)H.fail("Selecciona al menos una capa.");return c.selectedLayers;};

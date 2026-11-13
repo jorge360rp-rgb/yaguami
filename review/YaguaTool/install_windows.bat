@@ -1,13 +1,13 @@
 @echo off
 setlocal EnableExtensions DisableDelayedExpansion
 chcp 65001 >nul
-title YaguaTool 3.0.0 - After Effects 2024/2025
+title YaguaTool 3.0.1 - After Effects 2024/2025
 set "YAGUA_SOURCE=%~dp0"
 set "YAGUA_EXTDIR=%APPDATA%\Adobe\CEP\extensions"
 set "YAGUA_DEST=%YAGUA_EXTDIR%\YaguaTool"
 set "YAGUA_STAGE=%YAGUA_EXTDIR%\YaguaTool.__installing__"
 set "YAGUA_BACKUP=%USERPROFILE%\Documents\YaguaTool_Backups\install-%RANDOM%-%RANDOM%"
-echo YaguaTool 3.0.0 - Cierra After Effects antes de continuar.
+echo YaguaTool 3.0.1 - Cierra After Effects antes de continuar.
 if not exist "%YAGUA_SOURCE%CSXS\manifest.xml" goto failure
 if not exist "%YAGUA_SOURCE%jsx\yagua-host.jsx" goto failure
 if not exist "%YAGUA_EXTDIR%" mkdir "%YAGUA_EXTDIR%"
@@ -17,6 +17,8 @@ if exist "%YAGUA_STAGE%" rmdir /S /Q "%YAGUA_STAGE%"
 robocopy "%YAGUA_SOURCE%" "%YAGUA_STAGE%" /E /R:2 /W:1 /NP /NFL /NDL >"%TEMP%\YaguaTool_install.log" 2>&1
 if errorlevel 8 goto failure
 if not exist "%YAGUA_STAGE%\motion-lab\reference-player.js" goto failure
+if not exist "%YAGUA_STAGE%\js\ae-bridge.js" goto failure
+if not exist "%YAGUA_STAGE%\jsx\yagua-host.jsx" goto failure
 if not exist "%YAGUA_STAGE%\library\Fluido_Original_AE2024.aep" goto failure
 if exist "%YAGUA_DEST%" (
  move "%YAGUA_DEST%" "%YAGUA_BACKUP%\YaguaTool" >nul
