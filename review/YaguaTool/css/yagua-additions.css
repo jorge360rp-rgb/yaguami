@@ -1,0 +1,26 @@
+/* Additions keep the 2.8 visual system; scroll position is controlled explicitly. */
+#workspace #page{scroll-behavior:auto!important;overflow-anchor:none}
+#page *{overflow-anchor:none}
+#tabs{scroll-behavior:auto!important;overflow-anchor:none}
+.text-workspace-tabs{margin-bottom:20px;max-width:460px}
+.extras-panel{display:block}.extras-body{display:block}
+.fluid-preview-stage{position:relative;display:flex;align-items:center;justify-content:center;min-height:330px;background:#101114;border-radius:14px;overflow:hidden;margin:12px 0}
+.fluid-preview-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.fluid-placeholder{display:flex;flex-direction:column;gap:12px;text-align:center;color:#ddd;padding:24px}.fluid-placeholder b{font-size:38px;font-weight:600;letter-spacing:-.04em}.fluid-placeholder span{font-size:11px;color:#aaa}
+.fluid-transport{display:flex;align-items:center;flex-wrap:wrap;gap:10px}.fluid-transport input{flex:1;min-width:70px}
+.check-line{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--mut);margin:15px 0}
+.fluid-text-label{display:flex;flex-direction:column;gap:7px;margin:12px 0;font-size:11px;color:var(--mut)}
+#tabs .nav-label{font-size:11px;max-width:150px}
+@media(max-width:560px){.fluid-preview-stage{min-height:220px}.fluid-placeholder b{font-size:28px}.fluid-transport>.pri{width:100%}}
+.car-presets{display:flex;gap:8px;margin-bottom:16px}.car-presets>.btn{flex:1;max-width:240px}
+.car-preview{background:#101114;border:1px solid #ffffff11;border-radius:16px;overflow:hidden;min-height:240px;display:flex;align-items:center;margin:10px 0}
+.car-svg{width:100%;height:auto;display:block;touch-action:none;user-select:none}.car-svg [data-pin]{cursor:grab}.car-svg [data-pin]:focus{outline:none;stroke:#fbd35a}
+.car-point-inputs{display:flex;flex-wrap:wrap;gap:10px;margin:15px 0}.car-point-row{border:1px solid var(--line);border-radius:11px;padding:10px;display:flex;flex-wrap:wrap;align-items:center;gap:7px;flex:1 1 160px;font-size:10px;min-width:0}.car-point-row>b{width:100%;font-weight:600}.car-point-row label{display:flex;align-items:center;gap:5px}.car-point-row input{width:52px}
+@media(max-width:560px){.car-preview{min-height:210px}.car-controls>.row{flex-wrap:wrap}.car-controls>.row>.ctl{flex:1 1 100%}.car-point-row{flex:1 1 100%}}
+.tools-pro{margin-bottom:34px}.tools-pro-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0 20px}.tools-pro-tabs>.btn{flex:1;font-size:10px}
+.tools-curve-svg{width:100%;height:230px;display:block;touch-action:none;overflow:visible;color:var(--mut);max-width:650px;margin:8px auto}.tools-curve-svg circle{cursor:grab}.tools-curve-svg circle:focus{outline:none;stroke:#e8b53f;stroke-width:3}
+.curve-number-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:15px 0}.curve-number-grid label{font-size:10px;color:var(--mut)}.curve-number-grid input{display:block;width:100%;margin-top:5px;text-align:left}
+.tools-curve-presets{display:grid;grid-template-columns:repeat(auto-fit,minmax(82px,1fr));gap:7px;margin:14px 0}.tools-curve-presets>.btn{display:flex;align-items:center;flex-direction:column;padding:9px;gap:5px;font-size:9px}.tools-curve-presets svg{width:60px;height:34px}.tools-command-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:16px 0}.tools-command-grid>.btn{min-height:43px}
+.code-drop>input,.code-drop>select,.code-drop>textarea{width:100%;margin:9px 0}.code-drop>textarea{min-height:240px;font:11px/1.6 Consolas,monospace}.code-drop.is-over{outline:2px dashed var(--acc);outline-offset:4px}
+.code-library{display:flex;flex-wrap:wrap;gap:8px}.code-entry{display:flex;gap:5px;min-width:0}.code-entry>.btn:first-child{overflow:hidden;text-overflow:ellipsis;max-width:270px;white-space:nowrap}
+@media(max-width:560px){.curve-number-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tools-curve-svg{height:200px}.tools-pro-tabs>.btn{flex:1 1 100px}.tools-command-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tools-command-grid>.btn{font-size:10px}.tools-curve-presets{grid-template-columns:repeat(3,minmax(0,1fr))}}

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0e0e13">
+<title>YaguaTool</title>
+<link rel="icon" href="assets/yaguanimix-icon.png">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/dynamic-grid.css">
+<link rel="stylesheet" href="css/studio.css">
+<link rel="stylesheet" href="css/yagua-additions.css">
+<link rel="stylesheet" href="motion-lab/reference-player.css">
+<link rel="stylesheet" href="motion-lab/integration.css">
+</head>
+<body>
+<div id="app">
+
+  <header id="top">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span><span class="brand-copy">YaguaTool<small>Motion studio</small></span> <span class="ver">3.0.0</span>
+    </div>
+    <div class="top-actions"><div id="ctx" aria-live="polite"></div><button id="theme-toggle" class="icon-btn" aria-label="Cambiar tema" title="Cambiar tema">◐</button></div>
+  </header>
+
+  <div id="workspace">
+    <nav id="tabs" aria-label="Secciones de YaguaTool"></nav>
+    <button id="nav-shade" aria-label="Cerrar navegación" hidden></button>
+    <main id="page"></main>
+  </div>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <div id="viewer" role="dialog" aria-modal="true" aria-label="Vista ampliada" hidden></div>
+
+</div>
+<script>
+// Mostrar los errores de arranque incluso si main.js no llega a inicializarse.
+window.addEventListener("error", function (e) {
+  var main = document.getElementById("page");
+  if (main && !main.firstChild) {
+    var box = document.createElement("div");
+    box.style.cssText = "padding:16px;line-height:1.5;color:#ffb5b5;white-space:pre-wrap";
+    box.textContent = "YaguaTool: error al iniciar el panel.\n" + (e.message || "Error de JavaScript") +
+      "\n" + (e.filename || "") + ":" + (e.lineno || "");
+    main.appendChild(box);
+  }
+});
+</script>
+<script src="js/data.js"></script>
+<script src="js/aep-library.js"></script>
+<script src="js/dynamic-grid.js"></script>
+<script src="js/mask-motion.js"></script>
+<script src="js/studio-motion.js"></script>
+<script src="js/text-preview.js"></script>
+<script src="motion-lab/catalog-data.js"></script>
+<script src="motion-lab/reference-player.js"></script>
+<script src="motion-lab/reference-scene.js"></script>
+<script src="motion-lab/bake.js"></script>
+<script src="motion-lab/integration.js"></script>
+<script src="js/carrousel-model.js"></script>
+<script src="js/carrousel.js"></script>
+<script src="js/complex-text.js"></script>
+<script src="js/tools-pro.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
