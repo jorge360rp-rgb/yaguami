@@ -1,0 +1,66 @@
+/* Dynamic Grid 2.7 / Visual language inherits Yaguanimix tokens and Manrope. */
+#page .dg-header{padding:1px 2px 6px;min-width:0}
+.dg-kicker{font-size:.67rem;font-weight:800;letter-spacing:.15em;color:var(--acc);margin-bottom:5px}
+.dg-header h2{font-size:1.45rem;line-height:1.2;font-weight:800;letter-spacing:-.04em;margin-bottom:6px}
+.dg-header .desc{font-size:.83rem;margin:0 0 7px}
+.dg-tabbar{display:flex;align-items:center;padding:3px;gap:3px;border:1px solid var(--line);background:var(--panel2);border-radius:12px;margin:5px 0 12px}
+.dg-tabbar button{flex:1;min-width:0;padding:9px 2px;border:0;background:transparent;border-radius:9px;color:var(--mut);font:inherit;font-weight:800;font-size:.82rem;cursor:pointer}
+.dg-tabbar button.on{color:var(--acc-ink);background:var(--acc);box-shadow:0 5px 14px -7px var(--acc)}
+.dg-tabbar button:hover:not(.on){color:var(--txt);background:var(--acc-soft)}
+.dg-stage{border-radius:12px;border:1px solid var(--line);background:#111524;overflow:hidden;margin-bottom:12px}
+.dg-stage-toolbar{padding:8px 10px;display:flex;gap:5px;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;color:#bdc3da;background:#171b2d;border-bottom:1px solid #31364b}
+.dg-stage-toolbar span:last-child{font-weight:500;opacity:.75;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;max-width:60%}
+.dg-preview-wrap{padding:10px;background:radial-gradient(ellipse at 70% 60%,rgba(139,123,255,.11),transparent 64%),#0e1420}
+.dg-preview-wrap svg{display:block;width:100%;height:auto;aspect-ratio:12/7;border-radius:7px;overflow:hidden;touch-action:none;cursor:crosshair}
+.dg-card{min-width:0;padding:12px!important}
+.dg-card-title{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}
+.dg-card-title strong{font-size:.95rem;font-weight:800;letter-spacing:-.01em}
+.dg-preset-list,.dg-motion-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.dg-preset-list button,.dg-motion-list button{min-height:33px;word-break:normal;overflow-wrap:break-word;font:inherit;font-weight:700;font-size:.74rem;line-height:1.2;border:1px solid var(--line);border-radius:8px;padding:7px 4px;background:var(--panel2);color:var(--txt);cursor:pointer}
+.dg-preset-list button:hover,.dg-motion-list button:hover{border-color:var(--acc);background:var(--acc-soft)}
+.dg-preset-list button.on,.dg-motion-list button.on{background:var(--acc-soft);border-color:var(--acc);color:var(--txt)}
+.dg-motion-list{grid-template-columns:repeat(2,minmax(0,1fr));margin-bottom:12px}
+.dg-motion-list button{min-height:34px;font-size:.77rem}
+.dg-card .desc{font-size:.78rem;margin-top:10px;margin-bottom:0}
+.dg-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:12px 0}
+.dg-pair .dg-pair{margin:0}
+.dg-range{display:flex;flex-direction:column;gap:9px;min-width:0}
+.dg-range-cap{display:flex;justify-content:space-between;align-items:center;gap:5px;font-size:.75rem;color:var(--mut)}
+.dg-range-cap label{min-width:0;overflow-wrap:anywhere}
+.dg-range-cap output{flex:none;color:var(--txt);font-size:.72rem;font-weight:800}
+.dg-range input[type=range]{width:100%;height:5px}
+.dg-line{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:10px 0;min-height:28px}
+.dg-line>label{font-weight:650;font-size:.77rem;color:var(--mut);max-width:38%}
+.dg-line select{max-width:65%;flex:1;min-width:0;height:31px;font-size:.77rem;padding:0 20px 0 8px;background-position:right 6px center}
+.dg-small-field{display:flex;flex-direction:column;gap:6px;min-width:0;font-size:.76rem;color:var(--mut)}
+.dg-small-field input{max-width:100%;width:100%;text-align:left}
+.dg-switch{display:flex;align-items:center;gap:9px;margin:11px 0 2px;min-width:0;font-size:.8rem;color:var(--txt);cursor:pointer}
+.dg-switch input{appearance:none;flex:none;width:29px;height:18px;border-radius:12px;background:var(--line);border:1px solid var(--mut);position:relative;cursor:pointer}
+.dg-switch input:after{content:"";width:12px;height:12px;border-radius:50%;background:var(--mut);position:absolute;left:2px;top:2px;transition:transform .15s}
+.dg-switch input:checked{background:var(--acc);border-color:var(--acc)}
+.dg-switch input:checked:after{transform:translateX(11px);background:white}
+.dg-colors{display:flex;flex-wrap:wrap;gap:10px}
+.dg-color{flex:1;min-width:65px;display:flex;align-items:center;justify-content:space-between;gap:5px;font-size:.73rem;color:var(--mut)}
+.dg-color input{height:26px;width:31px;flex:none}
+.dg-actions{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 12px}
+#page .dg-actions>.btn{flex:1 1 130px;min-width:0;white-space:normal;line-height:1.2;padding:10px 7px;font-size:.79rem}
+.dg-segments{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:3px;background:var(--panel2);border:1px solid var(--line);border-radius:10px;margin:7px 0}
+.dg-segments button{font:inherit;font-size:.72rem;font-weight:800;color:var(--mut);background:transparent;border:0;border-radius:7px;padding:8px 3px;cursor:pointer;overflow-wrap:anywhere}
+.dg-segments button.on{background:var(--acc);color:var(--acc-ink)}
+.dg-frames{display:flex;gap:6px;flex-wrap:wrap}
+.dg-frame{min-height:48px;min-width:90px;flex:1 1 90px;background:var(--panel2);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:7px;gap:3px;cursor:pointer;text-align:left}
+.dg-frame strong{font-size:.77rem;color:var(--txt)}
+.dg-frame span{font-size:.67rem;color:var(--mut)}
+.dg-frame.on{border-color:var(--acc);background:var(--acc-soft)}
+.dg-picks-list{padding:9px;border:1px dashed var(--line);border-radius:7px;margin-top:10px;font-size:.72rem;line-height:1.6;color:var(--mut);max-height:72px;overflow:auto;user-select:text;word-break:break-word}
+.dg-mini{display:flex;flex-direction:column;gap:5px;min-width:0}
+.dg-mini label{color:var(--mut);font-size:.75rem}
+.dg-mini select{width:100%;height:28px;font-size:.77rem;padding:0 20px 0 6px;background-position:right 6px center}
+@media(max-width:360px){
+  .dg-tabbar button{font-size:.75rem;padding:9px 0}
+  .dg-preset-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dg-pair{gap:8px}
+  .dg-colors{gap:7px}
+  .dg-range-cap{font-size:.68rem;flex-wrap:wrap}
+  .dg-actions>.btn{flex:1 1 100%!important}
+}

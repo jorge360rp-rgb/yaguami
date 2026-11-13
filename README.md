@@ -1,25 +1,20 @@
-# Yaguanimix Studio · 2.8.0
+# YaguaTool 3.0.0
 
-Extensión para After Effects con una interfaz renovada y seis revelados creativos con máscara en TEXT.
+[Descargar YaguaTool 3.0.0](YaguaTool_3.0.0.zip) · [Capturas](previews/3.0.0) · [Vídeo de la interfaz](previews/3.0.0/YaguaTool_3.0.0_Interfaz.webm)
 
-**[Descargar Yaguanimix 2.8.0](https://github.com/jorge360rp-rgb/yaguami/raw/refs/heads/codex/yaguanimix-2.8.0-studio/Yaguanimix_2.8.0_STUDIO.zip)**
+Extensión CEP para After Effects 2024/2025. Evolución de Yaguanimix 2.8.0 con la misma interfaz de estudio y los módulos anteriores conservados.
 
-Extrae el ZIP completo, sustituye la carpeta de la extensión y reinicia After Effects. El encabezado debe mostrar 2.8.0.
+- TEXT: barridos de color desplegados, selección sin saltos de scroll y Motion Lab v0.9 integrado con sus 33 presets, previews en directo, curvas, sliders y exportaciones.
+- Complex text animation: efecto fluido desde el AEP original, importado al proyecto y duplicado con dependencias independientes. Preview de fotogramas renderizados por AE.
+- Carrousel: Línea editorial y Órbita suave; generador con preview, tres puntos interactivos y controles nativos editables para imágenes y composiciones.
+- Tools: curvas Bézier propias, gestión de keyframes, utilidades de formas/composiciones y biblioteca/editor de scripts y expresiones.
 
-## Interfaz
+Extrae el ZIP completo y consulta [GUIA_INSTALACION.md](GUIA_INSTALACION.md). Instala la fuente `assets/fonts/GeistLab760.ttf` para Motion Lab nativo; el fluido original utiliza Impact.
 
-Temas claro, oscuro y midnight; navegación translúcida; respuesta a las pulsaciones; transiciones entre secciones; búsqueda de presets; preview con pausa y recorrido manual; opción de movimiento reducido.
+## Validación
 
-![Interfaz clara](previews/Studio_2.8.0_Claro.png)
+Comparación con el panel Motion Lab original: 33 presets y 15.793 valores numéricos coincidentes. Pruebas de interfaz en 60 combinaciones de sección/anchura; scroll estable y pruebas simuladas de adaptadores nativos. Consulta [VALIDACION_3.0.0.md](VALIDACION_3.0.0.md) y [MATRIZ_FUNCIONES_3.0.0.md](MATRIZ_FUNCIONES_3.0.0.md).
 
-[Ver tema oscuro](previews/Studio_2.8.0_Oscuro.png) · [Panel acoplado](previews/Studio_2.8.0_Acoplado.png) · [Colección](previews/Studio_2.8.0_Coleccion.png) · [Grabación de las interacciones](previews/Studio_2.8.0_Interacciones.webm)
+After Effects no está disponible en el entorno de desarrollo: la ejecución real y la equivalencia visual del render nativo requieren revisión en AE. El motor web original está conservado; el bake nativo a 60 fps utiliza transformaciones editables, pero las fuentes, el desenfoque SVG/Gaussian y el color pueden mostrar diferencias de rasterizado. La preview de Fluido necesita AE y escritura de archivos habilitada.
 
-## Nuevos revelados de TEXT
-
-Silk Rise (MRU), Ribbon Fall (MRD), Prism Sweep (MRL), Split Slide (MRR), Iris Bloom (MSC) y Oblique Cut (MDI). Controles de intensidad, desplazamiento, orden de líneas, cadencia, borde suave, duración y retraso.
-
-[Detalles de la versión y límites](NOVEDADES_2.8.0.md) · [Investigación y referencias](INVESTIGACION_MOTION_2.8.0.md) · [SHA-256](SHA256SUMS.txt)
-
-Las pruebas automatizadas del motor y del panel pasan. **La revisión visual nativa en After Effects 2024/2025 sigue pendiente**; el ZIP incluye un diagnóstico JSX para generar las composiciones de revisión. La grabación muestra el panel en navegador, no un render de AE.
-
-La versión anterior se conserva en `Yaguanimix_2.7.7_TEXT.zip`.
+Se mantienen identificadores CEP y datos locales anteriores para actualizar la instalación. Los prefijos internos Animix y nombres de controles existentes se conservan por compatibilidad. Los documentos con versiones anteriores son históricos.

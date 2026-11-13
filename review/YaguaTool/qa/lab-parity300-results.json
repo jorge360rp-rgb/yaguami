@@ -1,0 +1,66 @@
+{
+  "presets": 33,
+  "numericComparisons": 15793,
+  "baked": [
+    {
+      "schema": 1,
+      "fps": 60,
+      "frames": 132,
+      "geometry": 5,
+      "records": 615,
+      "ids": [
+        "s0_main"
+      ],
+      "finite": true
+    },
+    {
+      "schema": 1,
+      "fps": 60,
+      "frames": 109,
+      "geometry": 5,
+      "records": 690,
+      "ids": [
+        "s0_main",
+        "s0_ghost",
+        "s0_ghost-glow"
+      ],
+      "finite": true
+    },
+    {
+      "schema": 1,
+      "fps": 60,
+      "frames": 186,
+      "geometry": 10,
+      "records": 4566,
+      "ids": [
+        "s0_main",
+        "s0_echo9",
+        "s0_glow0",
+        "s0_glow1",
+        "s0_echo1",
+        "s0_echo2",
+        "s0_echo3",
+        "s0_echo4",
+        "s0_echo5",
+        "s0_echo6",
+        "s0_echo7",
+        "s0_echo8",
+        "s0_echo0",
+        "s1_main",
+        "s1_glow0",
+        "s1_glow1",
+        "s1_echo9",
+        "s1_echo1",
+        "s1_echo2",
+        "s1_echo3",
+        "s1_echo4",
+        "s1_echo5",
+        "s1_echo6",
+        "s1_echo7",
+        "s1_echo8",
+        "s1_echo0"
+      ],
+      "finite": true
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "layouts": 60,
+  "viewportWidths": [
+    280,
+    320,
+    380,
+    768,
+    1340
+  ],
+  "errors": [],
+  "checks": [
+    "12 sections without horizontal page overflow",
+    "carousel keyboard/drag pins",
+    "radial path",
+    "element count",
+    "curve numeric control",
+    "script library save",
+    "drag/drop does not execute",
+    "Lab preview mount"
+  ]
+}
