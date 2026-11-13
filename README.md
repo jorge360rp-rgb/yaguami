@@ -1,6 +1,8 @@
-# YaguaTool 3.0.0
+# YaguaTool 3.0.1
 
-[Descargar YaguaTool 3.0.0](YaguaTool_3.0.0.zip) · [Capturas](previews/3.0.0) · [Vídeo de la interfaz](previews/3.0.0/YaguaTool_3.0.0_Interfaz.webm)
+Corrección de carga nativa y comunicación con AE: [CORRECCION_3.0.1.md](CORRECCION_3.0.1.md). El host se carga por ruta absoluta, sin #include, y se verifica antes de ejecutar los botones.
+
+[Descargar YaguaTool 3.0.1](YaguaTool_3.0.1.zip) · [Corrección de conexión](CORRECCION_3.0.1.md)
 
 Extensión CEP para After Effects 2024/2025. Evolución de Yaguanimix 2.8.0 con la misma interfaz de estudio y los módulos anteriores conservados.
 

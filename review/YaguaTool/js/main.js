@@ -2,7 +2,7 @@
 (function () {
   "use strict";
   var KEY = "animix.v1";
-  var hasCEP = !!(window.__adobe_cep__ && window.__adobe_cep__.evalScript);
+  var hasCEP = window.YaguaAEBridge.available();
 
   /* ---------- almacenamiento ---------- */
   var S = {
@@ -53,15 +53,10 @@
     clearTimeout(toastT); toastT = setTimeout(function () { t.className = ""; }, err ? 4500 : 2200);
   }
   function jsx(fn, args) {
-    return new Promise(function (res) {
-      if (!hasCEP) { console.log("[demo] jsx", fn, args); res({ ok: true, msg: "(demo) " + fn, data: null }); return; }
-      var script = "Animix.call(" + JSON.stringify(fn) + "," + JSON.stringify(JSON.stringify(args || {})) + ")";
-      window.__adobe_cep__.evalScript(script, function (r) {
-        try { res(JSON.parse(r)); } catch (e) { res({ ok: false, msg: "AE respondió: " + String(r).slice(0, 160) }); }
-      });
-    });
+    return window.YaguaAEBridge.call(fn,args||{});
   }
   function run(fn, args, quiet) {
+    if(!quiet&&hasCEP)toast("Ejecutando en After Effects…");
     return jsx(fn, args).then(function (r) { if (!quiet || !r.ok) toast(r.msg, !r.ok); return r; });
   }
   function copyText(t) {
@@ -1237,7 +1232,7 @@
       h("div", { class: "kv", style: "margin-top:8px" }, h("span", {}, "Referencias"), h("span", {}, S.refs.length)),
       h("div", { class: "kv" }, h("span", {}, "Paletas"), h("span", {}, S.palettes.length)),
       h("div", { class: "kv" }, h("span", {}, "Comps guardadas"), h("span", {}, S.comps.length))));
-    root.appendChild(h("div", { class: "desc", style: "text-align:center;margin-top:10px" }, "YaguaTool 3.0.0 · " + (hasCEP ? "conectado a After Effects" : "modo demo (fuera de After Effects)")));
+    root.appendChild(h("div", { class: "desc", style: "text-align:center;margin-top:10px" }, "YaguaTool 3.0.1 · " + (hasCEP ? "conectado a After Effects" : "modo demo (fuera de After Effects)")));
   }
 
   /* ---------- shell ---------- */
@@ -1351,8 +1346,14 @@
   document.addEventListener("keydown",function(e){if((e.key==="Escape"||e.keyCode===27)&&S.settings.sidebarOpen26){S.settings.sidebarOpen26=false;save();render();}});
   document.getElementById("viewer").addEventListener("click", function () { this.hidden = true; });
   function updateCtx() {
-    if (!hasCEP) { document.getElementById("ctx").textContent = "demo"; return; }
-    document.getElementById("ctx").textContent = "AE conectado";
+    var label=document.getElementById("ctx");
+    window.YaguaAEBridge.subscribe(function(state){
+      label.textContent=state.message;label.title=state.message;label.setAttribute("data-ae-state",state.status);
+      var box=document.getElementById("ae-connection"),message=document.getElementById("ae-connection-message");
+      box.hidden=state.status!=="error";message.textContent=state.message;
+    });
+    document.getElementById("ae-reconnect").addEventListener("click",function(){window.YaguaAEBridge.connect(true).then(function(reply){toast(reply.msg,!reply.ok);});});
+    window.YaguaAEBridge.connect(false);
   }
   var themeToggle=document.getElementById("theme-toggle");if(themeToggle)themeToggle.addEventListener("click",function(){S.settings.theme=S.settings.theme==="light"?"dark":"light";save(true);applyTheme();});
   if(window.matchMedia){var motionQuery=window.matchMedia("(prefers-reduced-motion: reduce)");if(motionQuery.addListener)motionQuery.addListener(function(){applyTheme();render();});}

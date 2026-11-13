@@ -1,11 +1,12 @@
-# Instalar YaguaTool 3.0.0
+# Instalar YaguaTool 3.0.1
 
-1. Cierra After Effects y extrae todo `YaguaTool_3.0.0.zip`.
+1. Cierra After Effects y extrae todo `YaguaTool_3.0.1.zip`.
 2. Windows: ejecuta `YaguaTool/install_windows.bat`. macOS: ejecuta `YaguaTool/install_mac.command` (si hace falta, otorga permiso de ejecución al archivo desde Terminal).
 3. Los instaladores copian la extensión al directorio CEP del usuario y respaldan las carpetas anteriores llamadas Yaguanimix/YaguaTool en `Documentos/YaguaTool_Backups`. No necesitas administrador. Conserva el respaldo para volver atrás.
 4. Instala `YaguaTool/assets/fonts/GeistLab760.ttf` antes de crear composiciones nativas de Motion Lab. Se incluye su licencia OFL. Para el efecto fluido conserva/instala Impact, según la licencia de tu sistema.
 5. Reinicia AE. Abre **Ventana > Extensiones (heredadas) > YaguaTool**.
-6. Activa en las preferencias de scripts de AE **Permitir que los scripts escriban archivos y accedan a la red** para las previews PNG, los guardados JSON y la generación nativa del Lab. La extensión no añade telemetría.
+6. El encabezado debe indicar **AE conectado · host 3.0.1**. Si aparece un error de carga, pulsa **Reconectar AE** y consulta su detalle.
+7. Activa en las preferencias de scripts de AE **Permitir que los scripts escriban archivos y accedan a la red** para las previews PNG, los guardados JSON y la generación nativa del Lab. La extensión no añade telemetría.
 
 ## Instalación manual
 
