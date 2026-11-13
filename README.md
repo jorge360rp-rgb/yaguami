@@ -1,5 +1,16 @@
 # Yaguanimix
 
+## After Effects Lab v0.1 · prueba independiente
+
+- [Descargar ZIP de prueba para AE](Yaguanimix_AE_Lab_v01.zip)
+- [Instalación, uso y limitaciones](ae-lab/v01/LEEME.md)
+- [Script JSX independiente](ae-lab/v01/Yaguanimix_AE_Lab.jsx)
+- [Resultados de comprobaciones de datos](ae-lab/v01/validation/results.json)
+
+Incluye 33 presets individuales con capas nativas y keyframes a 60 fps, una fuente estática y 145 PNG transparentes de Slide para comparación. Descomprime el paquete completo, instala la fuente y ejecuta el JSX desde Archivo → Secuencias de comandos → Ejecutar archivo de secuencia de comandos.
+
+**Versión experimental pendiente de ejecución y comparación visual en After Effects.** El motor nativo de blur y glow aún requiere calibración. No se ha integrado ni modificado el panel principal. No se presenta como equivalencia 1:1 verificada.
+
 ## Motion Lab v0.9 · referencia web
 
 Panel HTML autónomo con los 33 presets individuales de los packs Echo, Apple Style, Demo Reel y Ghost. Usa el renderizador público de la demo de Qwix y conserva la interfaz de evaluación Yaguanimix.

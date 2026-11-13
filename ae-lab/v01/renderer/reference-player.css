@@ -1,0 +1,7 @@
+.ymx-fx-host .qfx-text{z-index:2;white-space:pre;justify-content:center;align-items:center;display:inline-flex;position:relative}
+.ymx-fx-host .qfx-piece{vertical-align:baseline;white-space:pre;backface-visibility:hidden;margin-bottom:-.1em;padding:.04em 0 .1em;display:inline-block;position:relative}
+.ymx-fx-host .qfx-space{min-width:.25em}
+.ymx-fx-host .qfx-tracking .qfx-char{display:inline-block}
+.ymx-fx-host .qfx-layer{padding-bottom:inherit;pointer-events:none;place-items:center;display:grid;position:absolute;inset:0}
+.ymx-fx-host .qfx-glow{z-index:0}
+.ymx-fx-host .qfx-layer>.qfx-text{z-index:auto;grid-area:1/1}

@@ -1,0 +1,266 @@
+[
+  {
+    "name": "Swing Trail",
+    "pack": "Echo Pack",
+    "id": "pack-echo-pack-swing-trail",
+    "file": "pack-echo-pack-swing-trail.json",
+    "frames": 88,
+    "sha256": "a5efc97f7a4a8b6bdd6528eba5f15aa4557c7e3a6c7e501e523b1625f2994b71"
+  },
+  {
+    "name": "Afterimage",
+    "pack": "Echo Pack",
+    "id": "pack-echo-pack-afterimage",
+    "file": "pack-echo-pack-afterimage.json",
+    "frames": 103,
+    "sha256": "f2babc02300e35a4e411de1a678a0318840c60b7f5c3295fb4e00cbb4ca4b964"
+  },
+  {
+    "name": "Squeeze Arc",
+    "pack": "Echo Pack",
+    "id": "pack-echo-pack-squeeze-arc",
+    "file": "pack-echo-pack-squeeze-arc.json",
+    "frames": 136,
+    "sha256": "7adefc79744071c038974d1b4bd35ad40b6904ad015e49bddc94736336d2a235"
+  },
+  {
+    "name": "Comet",
+    "pack": "Echo Pack",
+    "id": "pack-echo-pack-comet",
+    "file": "pack-echo-pack-comet.json",
+    "frames": 110,
+    "sha256": "cff4c7afe03fc5c50da8710cde2bdc31eae9ad2498640b02bde3601b5f15392a"
+  },
+  {
+    "name": "Scale Pop",
+    "pack": "Echo Pack",
+    "id": "pack-echo-pack-scale-pop",
+    "file": "pack-echo-pack-scale-pop.json",
+    "frames": 108,
+    "sha256": "d1758227d1e4414db5bc81f4cf8c4d2cabb054b6cf062e36d07e23730455981c"
+  },
+  {
+    "name": "Tidal Bounce",
+    "pack": "Echo Pack",
+    "id": "pack-echo-pack-tidal-bounce",
+    "file": "pack-echo-pack-tidal-bounce.json",
+    "frames": 151,
+    "sha256": "bc8a9f960cf12e642587c66326f41a39a69117fdff29f0b9770963f2968a0897"
+  },
+  {
+    "name": "Echo Stack",
+    "pack": "Echo Pack",
+    "id": "pack-echo-pack-echo-stack",
+    "file": "pack-echo-pack-echo-stack.json",
+    "frames": 143,
+    "sha256": "b431a035374adc1ee56742cef7853817b0e100042671d6b19fc1af5752c545ae"
+  },
+  {
+    "name": "Word Slam",
+    "pack": "Echo Pack",
+    "id": "pack-echo-pack-word-slam",
+    "file": "pack-echo-pack-word-slam.json",
+    "frames": 94,
+    "sha256": "df31555e3c1991923babe6f38532e412eed9039bd9413cb486360d7e61e305d2"
+  },
+  {
+    "name": "Tilt Drift",
+    "pack": "Echo Pack",
+    "id": "pack-echo-pack-tilt-drift",
+    "file": "pack-echo-pack-tilt-drift.json",
+    "frames": 124,
+    "sha256": "d8eda3c16774143123af30b5cc04981cf448376f96e9b63adba1208ebe377258"
+  },
+  {
+    "name": "Letter Rain",
+    "pack": "Echo Pack",
+    "id": "pack-echo-pack-letter-rain",
+    "file": "pack-echo-pack-letter-rain.json",
+    "frames": 145,
+    "sha256": "2a1571719fe6cbb439f7b43d0774e61c1ac26f6140efc2d3b13da36123eaaf6a"
+  },
+  {
+    "name": "Halo",
+    "pack": "Echo Pack",
+    "id": "pack-echo-pack-halo",
+    "file": "pack-echo-pack-halo.json",
+    "frames": 104,
+    "sha256": "dd94879bbface7e6b63c63c469e39d0dc6f55b62b78b3050797e5f9dd6df4657"
+  },
+  {
+    "name": "Slide",
+    "pack": "Apple Style Pack",
+    "id": "pack-apple-style-pack-slide",
+    "file": "pack-apple-style-pack-slide.json",
+    "frames": 145,
+    "sha256": "cddb45b054d66604714190c1ff462cc8b5693c92f78fe79def30a795473f22a4"
+  },
+  {
+    "name": "Scale Slam",
+    "pack": "Apple Style Pack",
+    "id": "pack-apple-style-pack-scale-slam",
+    "file": "pack-apple-style-pack-scale-slam.json",
+    "frames": 103,
+    "sha256": "c57bcd7d80f7505570a1688ad614a78e05d52aeaf9fae9c4be63ee3ca185faa1"
+  },
+  {
+    "name": "Color Scale",
+    "pack": "Apple Style Pack",
+    "id": "pack-apple-style-pack-color-scale",
+    "file": "pack-apple-style-pack-color-scale.json",
+    "frames": 79,
+    "sha256": "d630bcbf76e0b5e287d1825ec6dfda7183677f1b9e4448d6d399078b4e3a5d78"
+  },
+  {
+    "name": "Slide Delay",
+    "pack": "Apple Style Pack",
+    "id": "pack-apple-style-pack-slide-delay",
+    "file": "pack-apple-style-pack-slide-delay.json",
+    "frames": 93,
+    "sha256": "caac311ddcee5c7d0783a856c8fe2e4b968b08961bc75cc37023b94c6a3d0b10"
+  },
+  {
+    "name": "Bounce Drop",
+    "pack": "Apple Style Pack",
+    "id": "pack-apple-style-pack-bounce-drop",
+    "file": "pack-apple-style-pack-bounce-drop.json",
+    "frames": 218,
+    "sha256": "98e3a2a19954f954f1ef838597e1c84eadee774b494ea1197b89a2b7fc80dd7a"
+  },
+  {
+    "name": "Blur Rise",
+    "pack": "Apple Style Pack",
+    "id": "pack-apple-style-pack-blur-rise",
+    "file": "pack-apple-style-pack-blur-rise.json",
+    "frames": 96,
+    "sha256": "fe8537830ab8a65be21e3ce07352dd2d7e6232105569a4fdc63df94b8b70c1ce"
+  },
+  {
+    "name": "Scale Words",
+    "pack": "Apple Style Pack",
+    "id": "pack-apple-style-pack-scale-words",
+    "file": "pack-apple-style-pack-scale-words.json",
+    "frames": 91,
+    "sha256": "fef7319f00f7cb280a2c6628c77323c95615e110d2e7e0f214b5f9a0061d076b"
+  },
+  {
+    "name": "Slide Rotation",
+    "pack": "Apple Style Pack",
+    "id": "pack-apple-style-pack-slide-rotation",
+    "file": "pack-apple-style-pack-slide-rotation.json",
+    "frames": 96,
+    "sha256": "0e08c4836e7161f7724f785954d302a1761a131ddb6af242f92373e63fee4045"
+  },
+  {
+    "name": "Scale Tracking",
+    "pack": "Apple Style Pack",
+    "id": "pack-apple-style-pack-scale-tracking",
+    "file": "pack-apple-style-pack-scale-tracking.json",
+    "frames": 133,
+    "sha256": "20b25134225cb977530b26c0f0c98cbf54b064c30a7cb8473c9a1b153d660fce"
+  },
+  {
+    "name": "Red Echo Bounce In",
+    "pack": "Demo Reel Pack",
+    "id": "pack-demo-reel-pack-red-echo-bounce-in",
+    "file": "pack-demo-reel-pack-red-echo-bounce-in.json",
+    "frames": 90,
+    "sha256": "86238e8862a4cbac6952d8f15c96005b0946536fad9117dd350006df9db7ba94"
+  },
+  {
+    "name": "Red Echo Bounce Out",
+    "pack": "Demo Reel Pack",
+    "id": "pack-demo-reel-pack-red-echo-bounce-out",
+    "file": "pack-demo-reel-pack-red-echo-bounce-out.json",
+    "frames": 93,
+    "sha256": "a293945fc6921492db54904d07b650635f668e467cc99f52501b0d91b2d72d28"
+  },
+  {
+    "name": "Cyan Glide In",
+    "pack": "Demo Reel Pack",
+    "id": "pack-demo-reel-pack-cyan-glide-in",
+    "file": "pack-demo-reel-pack-cyan-glide-in.json",
+    "frames": 117,
+    "sha256": "0cc43183d5d6004b5b925aeac9199c029498f3454ccfb5d8c73e12d659d5af1b"
+  },
+  {
+    "name": "Cyan Glide Out",
+    "pack": "Demo Reel Pack",
+    "id": "pack-demo-reel-pack-cyan-glide-out",
+    "file": "pack-demo-reel-pack-cyan-glide-out.json",
+    "frames": 105,
+    "sha256": "88ab940f02da927c8bfb74d57fb68f20e1177380d6e91a26834b57678c3309ed"
+  },
+  {
+    "name": "Magenta Snap In",
+    "pack": "Demo Reel Pack",
+    "id": "pack-demo-reel-pack-magenta-snap-in",
+    "file": "pack-demo-reel-pack-magenta-snap-in.json",
+    "frames": 102,
+    "sha256": "17d6a1b0f8c4daf2fafc5d1a9448916ed0992c5dce11276bfa636080ff3ed881"
+  },
+  {
+    "name": "Magenta Snap Out",
+    "pack": "Demo Reel Pack",
+    "id": "pack-demo-reel-pack-magenta-snap-out",
+    "file": "pack-demo-reel-pack-magenta-snap-out.json",
+    "frames": 80,
+    "sha256": "a32c89386aec2572a66df440c19beb28a3e70d3c1976d3a3daca6468b17bcc91"
+  },
+  {
+    "name": "Neon Spin In",
+    "pack": "Demo Reel Pack",
+    "id": "pack-demo-reel-pack-neon-spin-in",
+    "file": "pack-demo-reel-pack-neon-spin-in.json",
+    "frames": 105,
+    "sha256": "1294f3a43ec763b81450191e2190bd24d33175ef9accc20afbc9c8b649929f0f"
+  },
+  {
+    "name": "Neon Spin Out",
+    "pack": "Demo Reel Pack",
+    "id": "pack-demo-reel-pack-neon-spin-out",
+    "file": "pack-demo-reel-pack-neon-spin-out.json",
+    "frames": 84,
+    "sha256": "3a56eb7661d03df7a80de302b6e53a1cde6d9f9f7bbbaef0f7362f0fe62405ca"
+  },
+  {
+    "name": "Pink Pop In",
+    "pack": "Demo Reel Pack",
+    "id": "pack-demo-reel-pack-pink-pop-in",
+    "file": "pack-demo-reel-pack-pink-pop-in.json",
+    "frames": 80,
+    "sha256": "ff4b69f9c0f616a5dc030b6f46f2159f2fa9303c8da422b0d10c47b559215c9a"
+  },
+  {
+    "name": "Rotation Reveal",
+    "pack": "Ghost Pack",
+    "id": "pack-ghost-pack-rotation-reveal",
+    "file": "pack-ghost-pack-rotation-reveal.json",
+    "frames": 130,
+    "sha256": "afc1bfcadafbf18136237c5f7fea5ec73e08a773d9168f767e1ca27efee54e3b"
+  },
+  {
+    "name": "Skew Reveal",
+    "pack": "Ghost Pack",
+    "id": "pack-ghost-pack-skew-reveal",
+    "file": "pack-ghost-pack-skew-reveal.json",
+    "frames": 88,
+    "sha256": "ae979558365a46ec0e3050c987b0747fd47d2fc6a4de03557e24b075a9908962"
+  },
+  {
+    "name": "Bounce Reveal",
+    "pack": "Ghost Pack",
+    "id": "pack-ghost-pack-bounce-reveal",
+    "file": "pack-ghost-pack-bounce-reveal.json",
+    "frames": 120,
+    "sha256": "43881e8f25885da93e7023dc668f664ea3d237f4bb8ee2916aa7a38c6e0a94e3"
+  },
+  {
+    "name": "Bounce Rotation Reveal",
+    "pack": "Ghost Pack",
+    "id": "pack-ghost-pack-bounce-rotation-reveal",
+    "file": "pack-ghost-pack-bounce-rotation-reveal.json",
+    "frames": 119,
+    "sha256": "00e8a69de722368fb1ca3035105eb00d0f34b16c65c419bc68d76df2ff3850df"
+  }
+]
