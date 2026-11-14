@@ -1,0 +1,19 @@
+Base: codex/yaguatool-3.1.0-editable-motion-lab
+Head: e2bc26138adc0c7fa04e2a82447c6b819cd44488
+PR #4 head 48632ec... es ancestro (merge-base exit 0).
+main sigue en 6a68c8a... y no se usa como base.
+
+e2bc261 Publish verified YaguaTool 3.1.0 package
+d4f8c53 YaguaTool 3.1.0: editable Motion Lab controllers, compact presets, social compositions and Bounce
+25ddfd2 Prepare verified YaguaTool 3.1.0 package
+48632ec Publish verified YaguaTool 3.0.1 AE connection fix
+bbab956 Fix CEP native startup: bundled ES3 host, verified absolute-path load and reconnect diagnostics
+dedd7eb Prepare verified YaguaTool 3.0.1 patch package
+854a411 Package verified YaguaTool 3.0.0 download
+71ee6d0 Integrate YaguaTool 3.0.0: Motion Lab, fluid text, carousel and expanded tools
+04232db Prepare verified YaguaTool 3.0.0 release assembly
+2bbd996 Add verified Yaguanimix Studio 2.8.0 package
+84713c8 Redesign Yaguanimix Studio interface and six creative mask reveals for 2.8.0
+c82be0f Prepare verified upload for Yaguanimix Studio 2.8.0
+d7fd707 Add verified Yaguanimix 2.7.7 TEXT ZIP
+b44f23b Transfer Yaguanimix 2.7.7 TEXT ZIP for verified assembly

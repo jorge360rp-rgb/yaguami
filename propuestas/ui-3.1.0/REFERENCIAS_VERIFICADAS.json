@@ -1,0 +1,130 @@
+[
+  {
+    "name": "Apple HIG Layout",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/layout",
+    "status": 200,
+    "title": "Layout | Apple Developer Documentation",
+    "bytes": 18161
+  },
+  {
+    "name": "Apple HIG Sidebars",
+    "url": "https://developer.apple.com/design/human-interface-guidelines/sidebars",
+    "status": 200,
+    "title": "Sidebars | Apple Developer Documentation",
+    "bytes": 18158
+  },
+  {
+    "name": "Spectrum Slider",
+    "url": "https://spectrum.adobe.com/page/slider/",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "name": "Spectrum Side navigation",
+    "url": "https://spectrum.adobe.com/page/side-navigation/",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "name": "WAI APG Accordion",
+    "url": "https://www.w3.org/WAI/ARIA/apg/patterns/accordion/",
+    "status": 200,
+    "title": "Accordion Pattern (Sections With Show/Hide Functionality) | APG | WAI | W3C",
+    "bytes": 38741
+  },
+  {
+    "name": "WAI APG Tabs",
+    "url": "https://www.w3.org/WAI/ARIA/apg/patterns/tabs/",
+    "status": 200,
+    "title": "Tabs Pattern | APG | WAI | W3C",
+    "bytes": 41883
+  },
+  {
+    "name": "MDN aspect-ratio",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio",
+    "status": 200,
+    "title": "aspect-ratio CSS property - CSS | MDN",
+    "bytes": 333866
+  },
+  {
+    "name": "MDN min-width",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/min-width",
+    "status": 200,
+    "title": "min-width CSS property - CSS | MDN",
+    "bytes": 345132
+  },
+  {
+    "name": "MDN @property",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@property",
+    "status": 200,
+    "title": "@property CSS at-rule - CSS | MDN",
+    "bytes": 332815
+  },
+  {
+    "name": "DTCG",
+    "url": "https://www.designtokens.org/",
+    "status": 200,
+    "title": "Design Tokens Community Group",
+    "bytes": 39612
+  },
+  {
+    "name": "Magic UI Border Beam",
+    "url": "https://magicui.design/docs/components/border-beam",
+    "status": 200,
+    "title": "Border Beam | React Components &amp; Templates",
+    "bytes": 1164704
+  },
+  {
+    "name": "Inter licence",
+    "url": "https://raw.githubusercontent.com/rsms/inter/master/LICENSE.txt",
+    "status": 200,
+    "title": "Inter licence",
+    "bytes": 4380
+  },
+  {
+    "name": "CEP Resources",
+    "url": "https://github.com/Adobe-CEP/CEP-Resources",
+    "status": 200,
+    "title": "GitHub - Adobe-CEP/CEP-Resources: Tools and documentation for building Creative Cloud app extensions with CEP · GitHub",
+    "bytes": 242392
+  },
+  {
+    "name": "Every Layout",
+    "url": "https://every-layout.dev/",
+    "status": 200,
+    "title": "Relearn CSS layout: Every Layout",
+    "bytes": 77729
+  },
+  {
+    "name": "WCAG 2.2",
+    "url": "https://www.w3.org/WAI/WCAG22/quickref/",
+    "status": 200,
+    "title": "How to Meet WCAG (Quickref Reference)",
+    "bytes": 456950
+  },
+  {
+    "name": "Spectrum Slider",
+    "url": "https://opensource.adobe.com/spectrum-css/slider.html",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "name": "Spectrum Sidenav",
+    "url": "https://opensource.adobe.com/spectrum-css/sidenav.html",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "name": "React Spectrum Slider",
+    "url": "https://react-spectrum.adobe.com/react-spectrum/Slider.html",
+    "status": 200,
+    "final": "https://react-spectrum.adobe.com/v3/Slider.html"
+  },
+  {
+    "name": "React Spectrum SideNav",
+    "url": "https://react-spectrum.adobe.com/react-spectrum/SideNav.html",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "name": "Spectrum Sidenav (alternativa oficial)",
+    "url": "https://github.com/adobe/spectrum-css/tree/main/components/sidenav",
+    "status": 200,
+    "via": "GitHub connector"
+  }
+]

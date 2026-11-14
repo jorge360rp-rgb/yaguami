@@ -1,0 +1,119 @@
+{
+  "colors": {
+    "base": "#101216",
+    "surface": "#191c22",
+    "raised": "#22262e",
+    "interactive": "#292f39",
+    "text": "#f1f4f8",
+    "secondary": "#b0b8c5",
+    "tertiary": "#8f9bad",
+    "accent": "#66c2ff",
+    "accent-ink": "#0d0e11",
+    "focus": "#91d3ff",
+    "muted-track": "#6f7f96"
+  },
+  "checks": [
+    {
+      "foreground": "text",
+      "background": "base",
+      "ratio": 16.99,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "text",
+      "background": "surface",
+      "ratio": 15.47,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "text",
+      "background": "raised",
+      "ratio": 13.75,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "text",
+      "background": "interactive",
+      "ratio": 12.2,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "secondary",
+      "background": "base",
+      "ratio": 9.38,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "secondary",
+      "background": "surface",
+      "ratio": 8.54,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "secondary",
+      "background": "raised",
+      "ratio": 7.59,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "secondary",
+      "background": "interactive",
+      "ratio": 6.74,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "tertiary",
+      "background": "base",
+      "ratio": 6.66,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "tertiary",
+      "background": "surface",
+      "ratio": 6.06,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "tertiary",
+      "background": "raised",
+      "ratio": 5.39,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "tertiary",
+      "background": "interactive",
+      "ratio": 4.78,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "accent-ink",
+      "background": "accent",
+      "ratio": 9.86,
+      "minimum": 4.5
+    },
+    {
+      "foreground": "muted-track",
+      "background": "base",
+      "ratio": 4.6,
+      "minimum": 3
+    },
+    {
+      "foreground": "muted-track",
+      "background": "surface",
+      "ratio": 4.19,
+      "minimum": 3
+    },
+    {
+      "foreground": "muted-track",
+      "background": "raised",
+      "ratio": 3.72,
+      "minimum": 3
+    },
+    {
+      "foreground": "muted-track",
+      "background": "interactive",
+      "ratio": 3.3,
+      "minimum": 3
+    }
+  ]
+}

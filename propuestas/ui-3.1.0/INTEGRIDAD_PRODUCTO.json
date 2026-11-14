@@ -1,0 +1,8 @@
+{
+  "files": 153,
+  "unchanged": true,
+  "aepSha256": "68ed66dd1215b644ded3ba9a90a823f27a8bc110db8be1f4e1b8d9d01fd97f95",
+  "note": "No source/manifest/native code, preset data, image, AEP or existing release ZIP has been changed by this proposal.",
+  "existingZipUnchanged": true,
+  "existingZipSha256": "2ba7a5845e5d12e716b3f66140c23bb56fda419fb7999138e4bbac8e0873bf88"
+}

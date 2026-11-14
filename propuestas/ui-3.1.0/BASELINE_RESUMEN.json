@@ -1,0 +1,137 @@
+[
+  {
+    "state": "Texto",
+    "cases": 30,
+    "pageOverflow": 0,
+    "bounds": 0,
+    "media": 0,
+    "clipped": 6,
+    "overlap": 0
+  },
+  {
+    "state": "motion-lab",
+    "cases": 30,
+    "pageOverflow": 0,
+    "bounds": 3,
+    "media": 0,
+    "clipped": 0,
+    "overlap": 0
+  },
+  {
+    "state": "Complex-text-animation",
+    "cases": 30,
+    "pageOverflow": 24,
+    "bounds": 24,
+    "media": 0,
+    "clipped": 0,
+    "overlap": 0
+  },
+  {
+    "state": "Biblioteca",
+    "cases": 30,
+    "pageOverflow": 0,
+    "bounds": 0,
+    "media": 0,
+    "clipped": 0,
+    "overlap": 0
+  },
+  {
+    "state": "Carrousel",
+    "cases": 30,
+    "pageOverflow": 0,
+    "bounds": 0,
+    "media": 0,
+    "clipped": 0,
+    "overlap": 0
+  },
+  {
+    "state": "Movimiento",
+    "cases": 30,
+    "pageOverflow": 0,
+    "bounds": 0,
+    "media": 0,
+    "clipped": 0,
+    "overlap": 0
+  },
+  {
+    "state": "Fondos",
+    "cases": 30,
+    "pageOverflow": 0,
+    "bounds": 0,
+    "media": 0,
+    "clipped": 0,
+    "overlap": 0
+  },
+  {
+    "state": "Curvas",
+    "cases": 30,
+    "pageOverflow": 0,
+    "bounds": 0,
+    "media": 0,
+    "clipped": 0,
+    "overlap": 0
+  },
+  {
+    "state": "Herramientas",
+    "cases": 30,
+    "pageOverflow": 0,
+    "bounds": 9,
+    "media": 0,
+    "clipped": 9,
+    "overlap": 0
+  },
+  {
+    "state": "Guardado",
+    "cases": 30,
+    "pageOverflow": 0,
+    "bounds": 0,
+    "media": 0,
+    "clipped": 6,
+    "overlap": 0
+  },
+  {
+    "state": "Ret-cula",
+    "cases": 30,
+    "pageOverflow": 3,
+    "bounds": 6,
+    "media": 0,
+    "clipped": 0,
+    "overlap": 0
+  },
+  {
+    "state": "Grid-Pro",
+    "cases": 30,
+    "pageOverflow": 0,
+    "bounds": 6,
+    "media": 0,
+    "clipped": 6,
+    "overlap": 0
+  },
+  {
+    "state": "Ajustes",
+    "cases": 30,
+    "pageOverflow": 0,
+    "bounds": 0,
+    "media": 0,
+    "clipped": 0,
+    "overlap": 0
+  },
+  {
+    "state": "tools-shapes",
+    "cases": 30,
+    "pageOverflow": 0,
+    "bounds": 0,
+    "media": 0,
+    "clipped": 3,
+    "overlap": 0
+  },
+  {
+    "state": "tools-code",
+    "cases": 30,
+    "pageOverflow": 0,
+    "bounds": 0,
+    "media": 0,
+    "clipped": 0,
+    "overlap": 0
+  }
+]

@@ -1,0 +1,27 @@
+{
+  "globalSearch": "load preset in two clicks, no execution",
+  "escape": "restores focus",
+  "dpr": [
+    {
+      "deviceScaleFactor": 1,
+      "viewport": "240x560 CSS px",
+      "documentOverflow": false
+    },
+    {
+      "deviceScaleFactor": 1.25,
+      "viewport": "240x560 CSS px",
+      "documentOverflow": false
+    },
+    {
+      "deviceScaleFactor": 1.5,
+      "viewport": "240x560 CSS px",
+      "documentOverflow": false
+    },
+    {
+      "deviceScaleFactor": 2,
+      "viewport": "240x560 CSS px",
+      "documentOverflow": false
+    }
+  ],
+  "note": "DPR automation does not replace real OS/AE scaling or docked/floating tests."
+}
