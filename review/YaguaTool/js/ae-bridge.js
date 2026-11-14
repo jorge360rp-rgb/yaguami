@@ -1,7 +1,7 @@
 /* CEP -> ExtendScript transport. Load the packaged host explicitly, then verify it. */
 window.YaguaAEBridge=(function(){
  'use strict';
- var VERSION='3.0.1',pending=null,listeners=[],state={status:'idle',message:'Conectando con After Effects…',data:null};
+ var VERSION='3.1.0',pending=null,listeners=[],state={status:'idle',message:'Conectando con After Effects…',data:null};
  function available(){return !!(window.__adobe_cep__&&typeof window.__adobe_cep__.evalScript==='function');}
  function publish(status,message,data){state={status:status,message:message,data:data||null};listeners.forEach(function(fn){fn(state);});}
  function root(){var path='',encoded=false;try{path=window.__adobe_cep__.getSystemPath('extension')||'';}catch(ignore){}

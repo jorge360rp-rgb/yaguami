@@ -53,6 +53,8 @@ var YaguaNativeLab=(function(){
    scaleNode.shy=true;rotationNode.shy=true;
   }
   comp.hideShyLayers=true;comp.comment='YaguaTool Motion Lab v0.9 | '+JSON.stringify({parameters:data.parameters,sequence:data.sequence,holdMs:data.holdMs,sourceEngine:data.sourceEngine||'AE Lab v0.1'});
+  if(options.cacheOnly)return comp;
+  if(options.editable)return YaguaLabRig.create(comp,data,options,receiving);
   if(options.insert){if(!(receiving instanceof CompItem))throw Error("Abre una composición antes de insertar la animación.");var inserted=receiving.layers.add(comp);inserted.startTime=receiving.time;inserted.name="YaguaTool Lab · "+data.name;receiving.openInViewer();}else comp.openInViewer();return comp;
  }
 
@@ -74,8 +76,8 @@ var YaguaNativeLab=(function(){
  };
  Animix.api.ytLabDefault=function(o){
   if(!/^pack-[a-z0-9-]+$/.test(o.id))throw Error("Preset no válido.");
-  var file=new File(YaguaHost.root+"/lab-data/"+o.id+".json"),data=YaguaHost.read(file);validate(data);var c=safeBuild(data,{});
+  var file=new File(YaguaHost.root+"/lab-data/"+o.id+".json"),data=YaguaHost.read(file);validate(data);var c=safeBuild(data,{editable:true});
   return{msg:"Original nativo AE Lab v0.1 creado: "+c.name,data:{id:c.id}};
  };
- return{build:build,affine:affine};
+ return{build:build,affine:affine,safeBuild:safeBuild};
 })();

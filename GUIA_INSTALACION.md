@@ -1,11 +1,11 @@
-# Instalar YaguaTool 3.0.1
+# Instalar YaguaTool 3.1.0
 
-1. Cierra After Effects y extrae todo `YaguaTool_3.0.1.zip`.
+1. Cierra After Effects y extrae todo `YaguaTool_3.1.0.zip`.
 2. Windows: ejecuta `YaguaTool/install_windows.bat`. macOS: ejecuta `YaguaTool/install_mac.command` (si hace falta, otorga permiso de ejecución al archivo desde Terminal).
 3. Los instaladores copian la extensión al directorio CEP del usuario y respaldan las carpetas anteriores llamadas Yaguanimix/YaguaTool en `Documentos/YaguaTool_Backups`. No necesitas administrador. Conserva el respaldo para volver atrás.
 4. Instala `YaguaTool/assets/fonts/GeistLab760.ttf` antes de crear composiciones nativas de Motion Lab. Se incluye su licencia OFL. Para el efecto fluido conserva/instala Impact, según la licencia de tu sistema.
 5. Reinicia AE. Abre **Ventana > Extensiones (heredadas) > YaguaTool**.
-6. El encabezado debe indicar **AE conectado · host 3.0.1**. Si aparece un error de carga, pulsa **Reconectar AE** y consulta su detalle.
+6. El encabezado debe indicar **AE conectado · host 3.1.0**. Si aparece un error de carga, pulsa **Reconectar AE** y consulta su detalle.
 7. Activa en las preferencias de scripts de AE **Permitir que los scripts escriban archivos y accedan a la red** para las previews PNG, los guardados JSON y la generación nativa del Lab. La extensión no añade telemetría.
 
 ## Instalación manual
@@ -30,3 +30,12 @@ Cierra AE, mueve la carpeta nueva fuera de CEP y devuelve el respaldo a su ruta 
 ## Comprobación en AE pendiente
 
 Los instaladores Windows/macOS y el render de AE no se pueden ejecutar en el entorno Linux de desarrollo. Prueba primero en una copia de proyecto: fuentes, color, efectos disponibles y permisos pueden influir en el resultado. Motion Lab se genera en 1920×1080 a 60 fps; el carrusel toma el tamaño/fps de la composición activa al cargar/crear. Las miniaturas del carrusel son estáticas (fotograma actual de una comp), aunque el contenido de esas comps se reproduce normalmente en AE.
+
+
+## Motion Lab editable (3.1.0)
+
+1. Escribe tu texto en el primer cuadro de Motion Lab y selecciona el preset.
+2. Crea la animación o insértala en la composición activa. El controlador `TEXTO - ...` queda en el primer nivel; al insertar se encuentra en el propio timeline receptor.
+3. Selecciona esa capa: cambia Texto de origen y usa Controles de efectos. Los controles Global son inmediatos. Preset/Curva y el texto se sincronizan tras soltar/terminar el ajuste mientras YaguaTool esté abierto y la instancia/controlador esté seleccionado.
+4. No añadas keys a Preset/Curva: se consideran ajustes estáticos para regenerar el motor. Global admite keys. La sincronización tarda según la complejidad y puede pausarse desde la barra de estado; paúsala para recorrer Deshacer. Actualizar reintenta un fallo.
+5. Las animaciones de versiones anteriores se conservan tal como están. Crea una nueva con 3.1.0 para usar los nuevos controles. El render real en AE requiere revisión; los resultados automatizados proceden de APIs simuladas.

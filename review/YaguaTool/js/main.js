@@ -325,7 +325,7 @@
     var cur = list.filter(function (p) { return p.id === sel[key]; })[0] || list[0];
     var v = vals(key + cur.id, cur.params);
     root.appendChild(h("h3", {}, key === "text" ? "Presets de texto" : "Expresiones y movimiento"));
-    var chips = h("div", { class: "preset-families" });
+    var chips = h("div", { class: "preset-families compact-presets" });
     var groupFor = function(p) {
       if (/^(MRU|MRD|MRL|MRR|MSC|MDI)$/.test(p.id)) return 0;
       if (/^(HWR|CT|SBL|AFW|AFL|AFC|EDITORIAL|GLIDE|LIFT|STAG|YHERO|YDRIFT|YSLOW)$/.test(p.id)) return 1;
@@ -355,7 +355,7 @@
         if(key==="text" && groupFor(p)!==g)return;
         grid.appendChild(h("button",{class:"chip"+(p===cur?" on":""),"data-tip":p.desc,"aria-pressed":p===cur?"true":"false",onclick:function(event){sel[key]=p.id;if(key==="text"){
           S.textFamilyOpen26=S.textFamilyOpen26||{};S.textFamilyOpen26["f"+groupFor(p)]=true;
-        }render();if(event.detail===0){var active=document.querySelector(".chip.on");if(active)active.focus({preventScroll:true});}}},h("span",{class:"preset-art art-"+p.id,"aria-hidden":"true"},h("i",{},"Aa")),h("b",{},p.id.toUpperCase()),h("span",{class:"chip-name"},p.name)));
+        }render();if(event.detail===0){var active=document.querySelector(".chip.on");if(active)active.focus({preventScroll:true});}}},h("span",{class:"chip-name"},p.name)));
       });
       family.appendChild(grid);chips.appendChild(family);
     }
@@ -498,6 +498,7 @@
     if(mode==="lab"){
       var lab=h("section",{class:"yt-lab",id:"yt-lab"});root.appendChild(lab);
       window.YaguaMotionLab.mount(lab,{h:h,jsx:jsx,run:run,S:S,save:save,toast:toast,hasCEP:hasCEP});
+      return;
     }else presetPage(root, TEXT_PRESETS, "text", "text", "removeText");
     pageZoom(root);
     root.appendChild(h("h3", {}, "Barridos de color · 5 estilos"));
@@ -818,6 +819,15 @@
       h("button", { class: "btn", onclick: function () {
         var n = prompt("Nombre del preset:"); if (!n) return; S.graphPresets.push({ n: n, v: [g.x1, g.y1, g.x2, g.y2], m: g.mode }); save(); render();
       } }, "Guardar")));
+    var bounce=S.bounceCurve=S.bounceCurve||{strength:100,direction:'out'};
+    var bounceCard=h('section',{class:'card bounce-card'},h('h3',{},'Curva Rebote'),h('p',{class:'desc'},'Aplica un rebote real entre dos keyframes consecutivos. Se generan keys intermedias; puedes deshacer la operación.'));
+    bounceCard.appendChild(seg2([['out','Rebote de llegada'],['in','Rebote de salida']],bounce.direction,function(v){bounce.direction=v;save();}));
+    bounceCard.appendChild(control({k:'strength',t:'num',label:'Intensidad del rebote',min:0,max:100,step:1,def:100,unit:'%'},bounce));
+    var svg=h('div',{class:'bounce-graph','aria-label':'Preview de curva rebote'});
+    svg.innerHTML='<svg viewBox="0 0 300 100" aria-hidden="true"><path d="M10 90 L290 90 M10 10 V90" fill="none" stroke="currentColor" opacity=".2"/><path id="bounce-preview-path" fill="none" stroke="var(--acc)" stroke-width="2"/></svg>';
+    bounceCard.appendChild(svg);function paintBounce(){var d='';for(var bi=0;bi<=120;bi++){var bt=bi/120,bv=YaguaBounce.value(bt,bounce.direction,bounce.strength);d+=(bi?' L':'M')+(10+bt*280)+','+(90-bv*80);}svg.querySelector('path:last-child').setAttribute('d',d);}
+    bounceCard.addEventListener('input',paintBounce);bounceCard.addEventListener('click',paintBounce);paintBounce();
+    bounceCard.appendChild(h('button',{class:'btn pri',onclick:function(){run('ytBounceCurve',bounce);}},'Aplicar Curva Rebote'));root.appendChild(bounceCard);
     redraw();
     function grid(title, items, del) {
       root.appendChild(h("h3", {}, title));
@@ -1109,6 +1119,13 @@
 
   /* ---------- Grid ---------- */
   function pageGrid(root) {
+    var social=S.socialComp=S.socialComp||{fps:30,duration:10};
+    var creator=h('section',{class:'card social-creator'},h('h3',{},'Crear composición para redes sociales'),h('p',{class:'desc'},'Formatos de partida habituales. Crea una composición nueva con estas dimensiones.'));
+    creator.appendChild(control({k:'fps',t:'num',label:'Fotogramas por segundo',min:1,max:120,step:1,def:30},social));
+    creator.appendChild(control({k:'duration',t:'num',label:'Duración de composición',min:1,max:600,step:1,def:10,unit:'s'},social));
+    var formats=h('div',{class:'social-formats'});
+    YaguaSocialFormats.forEach(function(f){formats.appendChild(h('button',{class:'btn social-format','aria-label':'Crear '+f.name,onclick:function(){run('ytSocialComp',{id:f.id,fps:social.fps,duration:social.duration});}},h('strong',{},f.name),h('span',{},f.width+' × '+f.height)));});creator.appendChild(formats);root.appendChild(creator);
+
     var cfg = S.gridCfg = S.gridCfg || { opacity: 45 };
     root.appendChild(h("h3", {}, "Overlays de redes sociales"));
     root.appendChild(h("div", { class: "desc" }, "Añade una capa guía (no se renderiza) con las zonas que cubre la interfaz de cada app. Las medidas son aproximadas sobre 1080×1920 y se escalan a tu comp."));
@@ -1232,7 +1249,7 @@
       h("div", { class: "kv", style: "margin-top:8px" }, h("span", {}, "Referencias"), h("span", {}, S.refs.length)),
       h("div", { class: "kv" }, h("span", {}, "Paletas"), h("span", {}, S.palettes.length)),
       h("div", { class: "kv" }, h("span", {}, "Comps guardadas"), h("span", {}, S.comps.length))));
-    root.appendChild(h("div", { class: "desc", style: "text-align:center;margin-top:10px" }, "YaguaTool 3.0.1 · " + (hasCEP ? "conectado a After Effects" : "modo demo (fuera de After Effects)")));
+    root.appendChild(h("div", { class: "desc", style: "text-align:center;margin-top:10px" }, "YaguaTool 3.1.0 · " + (hasCEP ? "conectado a After Effects" : "modo demo (fuera de After Effects)")));
   }
 
   /* ---------- shell ---------- */
@@ -1256,7 +1273,7 @@
   }
   function pageComplex(root){window.YaguaComplex.render(root,{h:h,run:run,jsx:jsx,S:S,save:save,toast:toast,hasCEP:hasCEP});}
   function pageCarrousel(root){window.YaguaCarrousel.render(root,{h:h,run:run,jsx:jsx,S:S,save:save,toast:toast,hasCEP:hasCEP});}
-  var PAGES = [["text", "Texto", pageText],["complex","Complex text animation",pageComplex],["carrousel","Carrousel",pageCarrousel], ["library", "Biblioteca", pageAepLibrary], ["motion", "Movimiento", pageExpr], ["backgrounds", "Fondos", pageBackgrounds], ["graph", "Curvas", pageGraph], ["tools", "Herramientas", pageTools], ["saved", "Guardado", pageSaved], ["grid", "Retícula", pageGrid], ["dynamicgrid", "Grid Pro", pageDynamicGrid], ["settings", "Ajustes", pageSettings]];
+  var PAGES = [["text", "Texto", pageText],["complex","Complex text animation",pageComplex],["library", "Biblioteca", pageAepLibrary], ["carrousel","Carrousel",pageCarrousel], ["motion", "Movimiento", pageExpr], ["backgrounds", "Fondos", pageBackgrounds], ["graph", "Curvas", pageGraph], ["tools", "Herramientas", pageTools], ["saved", "Guardado", pageSaved], ["grid", "Retícula", pageGrid], ["dynamicgrid", "Grid Pro", pageDynamicGrid], ["settings", "Ajustes", pageSettings]];
   var sectionCopy={
     complex:["Complex text animation.","Efecto fluido · proyecto original de After Effects."],
     carrousel:["Carrousel.","Organiza imágenes y composiciones sobre una trayectoria viva."],
@@ -1352,8 +1369,12 @@
       var box=document.getElementById("ae-connection"),message=document.getElementById("ae-connection-message");
       box.hidden=state.status!=="error";message.textContent=state.message;
     });
-    document.getElementById("ae-reconnect").addEventListener("click",function(){window.YaguaAEBridge.connect(true).then(function(reply){toast(reply.msg,!reply.ok);});});
-    window.YaguaAEBridge.connect(false);
+    document.getElementById("ae-reconnect").addEventListener("click",function(){window.YaguaAEBridge.connect(true).then(function(reply){toast(reply.msg,!reply.ok);if(reply.ok)window.YaguaLabLive.start();});});
+    document.addEventListener('yagua-lab-sync',function(e){var box=document.getElementById('lab-sync');box.hidden=e.detail.status==='idle';document.getElementById('lab-sync-message').textContent=e.detail.message;box.setAttribute('data-status',e.detail.status);});
+    document.getElementById('lab-sync-toggle').addEventListener('click',function(){if(window.YaguaLabLive.getState().running){window.YaguaLabLive.pause();this.textContent='Reanudar sincronización';}else{window.YaguaLabLive.retry();window.YaguaLabLive.start();this.textContent='Pausar sincronización';}});
+    document.getElementById('lab-sync-retry').addEventListener('click',function(){window.YaguaLabLive.retry();});
+    window.YaguaAEBridge.connect(false).then(function(reply){if(reply.ok)window.YaguaLabLive.start();});
+    window.addEventListener('beforeunload',function(){window.YaguaLabLive.stop();});
   }
   var themeToggle=document.getElementById("theme-toggle");if(themeToggle)themeToggle.addEventListener("click",function(){S.settings.theme=S.settings.theme==="light"?"dark":"light";save(true);applyTheme();});
   if(window.matchMedia){var motionQuery=window.matchMedia("(prefers-reduced-motion: reduce)");if(motionQuery.addListener)motionQuery.addListener(function(){applyTheme();render();});}

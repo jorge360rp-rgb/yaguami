@@ -1,12 +1,12 @@
 #!/bin/bash
-# YaguaTool 3.0.1 · user install, upgrade and rollback.
+# YaguaTool 3.1.0 · user install, upgrade and rollback.
 set -euo pipefail
 YAGUA_SOURCE="$(cd "$(dirname "$0")" && pwd)"
 YAGUA_EXTDIR="$HOME/Library/Application Support/Adobe/CEP/extensions"
 YAGUA_DEST="$YAGUA_EXTDIR/YaguaTool"
 YAGUA_STAGE="$YAGUA_EXTDIR/YaguaTool.__installing__"
 YAGUA_BACKUP="$HOME/Documents/YaguaTool_Backups/$(date +%Y%m%d-%H%M%S)"
-printf '\nYaguaTool 3.0.1 — After Effects 2024/2025\nCierra After Effects antes de instalar.\n'
+printf '\nYaguaTool 3.1.0 — After Effects 2024/2025\nCierra After Effects antes de instalar.\n'
 [[ -f "$YAGUA_SOURCE/CSXS/manifest.xml" && -f "$YAGUA_SOURCE/jsx/yagua-host.jsx" ]] || { printf 'Extrae el ZIP completo y ejecuta desde YaguaTool.\n' >&2; exit 1; }
 mkdir -p "$YAGUA_EXTDIR" "$YAGUA_BACKUP"
 if [[ -e "$YAGUA_STAGE" ]]; then rm -rf "$YAGUA_STAGE"; fi

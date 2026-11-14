@@ -52,7 +52,7 @@ window.YaguaLabBake=(function(){
     if(f%6===0){if(progress)progress(f/count);await new Promise(resolve=>setTimeout(resolve,0));}
    }
    if(progress)progress(1);
-   return {schema:1,name:source.data.name,pack:source.data.pack,id:source.data.name,text:source.text,font:'GeistLab760',fontSize:source.fontSize,width:1920,height:1080,fps,geometry,frames,parameters:source.params,sequence:source.sequence,holdMs:source.holdMs,sourceEngine:'Motion Lab v0.9 · unchanged reference-player.js'};
+   return {schema:1,name:source.data.name,pack:source.data.pack,id:source.presetId||source.data.name,text:source.text,renderOptions:source,font:'GeistLab760',fontSize:source.fontSize,width:1920,height:1080,fps,geometry,frames,parameters:source.params,sequence:source.sequence,holdMs:source.holdMs,sourceEngine:'Motion Lab v0.9 · unchanged reference-player.js'};
   }finally{scene.destroy();stage.remove();}
  }
  return {capture};
