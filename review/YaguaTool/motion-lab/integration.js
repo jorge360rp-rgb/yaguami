@@ -15,6 +15,12 @@ function mount(root,host){
 
 'use strict';
 const $=id=>root.querySelector("#"+id);
+const textFirst=document.createElement('section');textFirst.className='lab-text-first card';
+const textLabel=$('sampleText').closest('label');textFirst.appendChild(textLabel);textFirst.appendChild($('twoLines'));
+const originalToggle=$('referenceText').closest('label');textFirst.appendChild(originalToggle);root.prepend(textFirst);
+$('referenceText').checked=false;$('sampleText').value='Tu texto';
+const liveHelp=document.createElement('p');liveHelp.className='desc';liveHelp.textContent='Después de crear: edita TEXTO en AE y sus controles de efectos. Mantén YaguaTool abierto para sincronizar los parámetros del preset.';textFirst.appendChild(liveHelp);
+
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 const num=(v,f=0)=>Number.isFinite(Number(v))?Number(v):f;
 const fmt=n=>(Math.round(num(n)*1000)/1000).toString();
@@ -406,13 +412,14 @@ async function applyNative(insert){
   status('Muestreando el motor v0.9 a 60 fps…');
   const options=renderOptions(selected,config(currentMode()),$('sampleText').value||' ');
   if(raf){cancelAnimationFrame(raf);raf=0;}
+  options.presetId=selected.id;options.editable=true;
   const baked=await window.YaguaLabBake.capture(options,(fraction)=>status('Preparando '+Math.round(fraction*100)+' % · sin reducir Echo ni Ghost'),()=>disposed);
   if(disposed)return;
   const pathReply=await host.jsx('tempDir');if(!pathReply.ok)throw Error(pathReply.msg);
   const fs=window.cep&&window.cep.fs;if(!fs)throw Error('El acceso a archivos CEP no está disponible.');
   const path=pathReply.data+'/YaguaTool_Lab_'+Date.now()+'.json';const result=fs.writeFile(path,JSON.stringify(baked));if(result.err)throw Error('No se pudo escribir la animación temporal: '+result.err);
   status('Creando capas nativas en AE…');
-  const answer=await host.run('ytLabBuild',{path,insert:!!insert,temporary:true});status(answer.msg);
+  const answer=await host.run('ytLabBuild',{path,insert:!!insert,temporary:true,editable:true});status(answer.msg);
  }catch(e){status(e.message);}finally{if(!disposed){button.disabled=false;render(playhead);start();}}
 }
 const fontButton=document.createElement('button');fontButton.className='secondary';fontButton.textContent='Abrir fuente incluida';fontButton.addEventListener('click',()=>{if(host.hasCEP)host.run('ytOpenFontFolder');else status('La fuente está incluida en assets/fonts/GeistLab760.ttf del ZIP.');});root.querySelector('.native-lab-actions').append(fontButton);

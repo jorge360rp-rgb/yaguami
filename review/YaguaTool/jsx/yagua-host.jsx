@@ -1,5 +1,5 @@
-// YaguaTool 3.0.1 - generated self-contained CEP host. Run qa/build_host.py to update.
-var YaguaHostBoot={version:"3.0.1",modules:[],errors:[]};
+// YaguaTool 3.1.0 - generated self-contained CEP host. Run qa/build_host.py to update.
+var YaguaHostBoot={version:"3.1.0",modules:[],errors:[]};
 
 // MODULE host.jsx SHA256 64a803ccbd334cd05a4b1c03a9e8559e93fe009834260307888c2845dbc1eb24
 try {
@@ -2798,7 +2798,7 @@ YaguaHostBoot.modules.push("yagua-core.jsx");
 YaguaHostBoot.errors.push("yagua-core.jsx: "+String(yaguaModuleError.message||yaguaModuleError)+" (line "+String(yaguaModuleError.line||"?")+")");
 }
 
-// MODULE lab-native.jsx SHA256 c07c0039e4fe7a6a533d96a6023f5bc6ea326b06605f58deb8fd5fecb1fbd65d
+// MODULE lab-native.jsx SHA256 5717e926fca7b68053e80ffb00e78a976eaaf986cf5a6e2b0b9177c97f233b77
 try {
 // Native adapter based on the user's AE Lab v0.1; source poses are sampled unchanged at 60 fps.
 var YaguaNativeLab=(function(){
@@ -2855,6 +2855,8 @@ var YaguaNativeLab=(function(){
    scaleNode.shy=true;rotationNode.shy=true;
   }
   comp.hideShyLayers=true;comp.comment='YaguaTool Motion Lab v0.9 | '+JSON.stringify({parameters:data.parameters,sequence:data.sequence,holdMs:data.holdMs,sourceEngine:data.sourceEngine||'AE Lab v0.1'});
+  if(options.cacheOnly)return comp;
+  if(options.editable)return YaguaLabRig.create(comp,data,options,receiving);
   if(options.insert){if(!(receiving instanceof CompItem))throw Error("Abre una composición antes de insertar la animación.");var inserted=receiving.layers.add(comp);inserted.startTime=receiving.time;inserted.name="YaguaTool Lab · "+data.name;receiving.openInViewer();}else comp.openInViewer();return comp;
  }
 
@@ -2876,10 +2878,10 @@ var YaguaNativeLab=(function(){
  };
  Animix.api.ytLabDefault=function(o){
   if(!/^pack-[a-z0-9-]+$/.test(o.id))throw Error("Preset no válido.");
-  var file=new File(YaguaHost.root+"/lab-data/"+o.id+".json"),data=YaguaHost.read(file);validate(data);var c=safeBuild(data,{});
+  var file=new File(YaguaHost.root+"/lab-data/"+o.id+".json"),data=YaguaHost.read(file);validate(data);var c=safeBuild(data,{editable:true});
   return{msg:"Original nativo AE Lab v0.1 creado: "+c.name,data:{id:c.id}};
  };
- return{build:build,affine:affine};
+ return{build:build,affine:affine,safeBuild:safeBuild};
 })();
 
 YaguaHostBoot.modules.push("lab-native.jsx");
@@ -3076,13 +3078,123 @@ YaguaHostBoot.modules.push("tools-pro.jsx");
 YaguaHostBoot.errors.push("tools-pro.jsx: "+String(yaguaModuleError.message||yaguaModuleError)+" (line "+String(yaguaModuleError.line||"?")+")");
 }
 
+// MODULE ../js/workflow-model.js SHA256 4e404fbf17363fd8038950018e1faae96c23bf64bfa7ff6a705f2e7361e54ad1
+try {
+/* ES3 models shared by the panel and native host. */
+var YaguaSocialFormats=[
+ {id:'ig-reel',name:'Instagram Reels / Stories',width:1080,height:1920},
+ {id:'ig-feed',name:'Instagram Feed 4:5',width:1080,height:1350},
+ {id:'ig-portrait',name:'Instagram retrato 3:4',width:1080,height:1440},
+ {id:'square',name:'Post cuadrado',width:1080,height:1080},
+ {id:'tiktok',name:'TikTok vertical',width:1080,height:1920},
+ {id:'shorts',name:'YouTube Shorts',width:1080,height:1920},
+ {id:'youtube',name:'YouTube horizontal',width:1920,height:1080},
+ {id:'linkedin',name:'LinkedIn horizontal',width:1200,height:627},
+ {id:'x',name:'X horizontal',width:1600,height:900},
+ {id:'pinterest',name:'Pinterest Pin',width:1000,height:1500}
+];
+var YaguaBounce=(function(){
+ function out(t){var n=7.5625,d=2.75;if(t<1/d)return n*t*t;if(t<2/d){t-=1.5/d;return n*t*t+.75;}if(t<2.5/d){t-=2.25/d;return n*t*t+.9375;}t-=2.625/d;return n*t*t+.984375;}
+ function value(t,direction,strength){t=Math.max(0,Math.min(1,t));var b=direction==='in'?1-out(1-t):out(t);return t+(b-t)*Math.max(0,Math.min(100,Number(strength)))/100;}
+ return{value:value};
+})();
+if(typeof module!=='undefined'&&module.exports)module.exports={formats:YaguaSocialFormats,bounce:YaguaBounce};
+
+YaguaHostBoot.modules.push("../js/workflow-model.js");
+} catch (yaguaModuleError) {
+YaguaHostBoot.errors.push("../js/workflow-model.js: "+String(yaguaModuleError.message||yaguaModuleError)+" (line "+String(yaguaModuleError.line||"?")+")");
+}
+
+// MODULE workflow.jsx SHA256 b7e880d7cd4604b8870390ceb0f28ea4cc8541915e618a07262559e7edf388ea
+try {
+(function(){
+ var api=Animix.api;
+ api.ytSocialComp=function(o){
+  var f=null,i;for(i=0;i<YaguaSocialFormats.length;i++)if(YaguaSocialFormats[i].id===o.id)f=YaguaSocialFormats[i];
+  if(!f)throw Error('Formato de red social no válido.');
+  var fps=Math.max(1,Math.min(120,Number(o.fps)||30)),duration=Math.max(1,Math.min(600,Number(o.duration)||10));
+  if(!app.project)app.newProject();var c=app.project.items.addComp('YaguaTool · '+f.name,f.width,f.height,1,duration,fps);c.openInViewer();
+  return{msg:'Composición creada: '+f.name+' · '+f.width+' × '+f.height,data:{id:c.id,width:f.width,height:f.height}};
+ };
+ function numeric(v){if(typeof v==='number')return isFinite(v);if(Object.prototype.toString.call(v)==='[object Array]'){for(var i=0;i<v.length;i++)if(typeof v[i]!=='number'||!isFinite(v[i]))return false;return true;}return false;}
+ api.ytBounceCurve=function(o){var props=YaguaHost.selectedProps(),plans=[],i,j,p,keys,c=YaguaHost.comp(),strength=o.strength===undefined?100:Number(o.strength);
+  if(!isFinite(strength))throw Error('Intensidad no válida.');
+  for(i=0;i<props.length;i++){p=props[i];if(p.expressionEnabled||!numeric(p.value))throw Error('Selecciona propiedades numéricas sin expresión.');keys=p.selectedKeys;if(keys.length<2)throw Error('Selecciona al menos dos keys consecutivas.');
+   for(j=0;j<keys.length-1;j++){if(keys[j+1]!==keys[j]+1)throw Error('No debe haber keys sin seleccionar dentro de cada segmento.');plans.push({p:p,a:p.keyTime(keys[j]),b:p.keyTime(keys[j+1]),v1:p.keyValue(keys[j]),v2:p.keyValue(keys[j+1]),inType:p.keyInInterpolationType(keys[j]),outType:p.keyOutInterpolationType(keys[j+1])});}
+  }
+  for(i=0;i<plans.length;i++){var plan=plans[i],steps=Math.min(600,Math.max(12,Math.ceil((plan.b-plan.a)*c.frameRate))),v,t,u,k;p=plan.p;
+   for(j=0;j<=steps;j++){t=plan.a+(plan.b-plan.a)*j/steps;u=YaguaBounce.value(j/steps,o.direction,strength);if(typeof plan.v1==='number')v=plan.v1+(plan.v2-plan.v1)*u;else{v=[];for(k=0;k<plan.v1.length;k++)v.push(plan.v1[k]+(plan.v2[k]-plan.v1[k])*u);}p.setValueAtTime(t,v);k=p.nearestKeyIndex(t);p.setInterpolationTypeAtKey(k,j===0?plan.inType:KeyframeInterpolationType.LINEAR,j===steps?plan.outType:KeyframeInterpolationType.LINEAR);if(p.isSpatial&&j>0&&j<steps){var zero=[];for(var d=0;d<plan.v1.length;d++)zero.push(0);p.setSpatialAutoBezierAtKey(k,false);p.setSpatialTangentsAtKey(k,zero,zero);}}
+  }return{msg:'Curva Rebote aplicada a '+plans.length+' segmentos. Deshacer recupera las keys anteriores.'};
+ };
+})();
+
+YaguaHostBoot.modules.push("workflow.jsx");
+} catch (yaguaModuleError) {
+YaguaHostBoot.errors.push("workflow.jsx: "+String(yaguaModuleError.message||yaguaModuleError)+" (line "+String(yaguaModuleError.line||"?")+")");
+}
+
+// MODULE lab-editable.jsx SHA256 67fb99f94d2ca4239c518244d14d8338f1590d95d076fda3566cf26b19086254
+try {
+// Editable front controller; original motion is regenerated with the unchanged browser engine.
+var YaguaLabRig=(function(){
+ var MARK='YAGUA_LAB_RIG_310|',DRIVER='YAGUA_LAB_DRIVER_310|',globalFields=[['Global - Escala %',100],['Global - X',0],['Global - Y',0],['Global - Rotacion',0],['Global - Opacidad %',100],['Global - Blur',0]];
+ var choices={direction:['up','down','left','right','custom'],split:['chars','words','lines','whole'],mode:['in','out','both'],trajectory:['start','end','center-out','center-in','all-at-once','random','custom-index'],rotationMode:['uniform','split'],blurMode:['piece','global'],echoPlace:['over','behind'],echoStyle:['trail','ghost'],ghostEngine:['deep','deep2','glow'],fillUnit:['chars','words','lines'],fillDirection:['start','end','center','to-center'],fillStyle:['reveal','wave'],fillGlowStyle:['soft','hard'],fillGlowEngine:['glow','deep'],motionDistribution:['stagger','simultaneous'],blinkSplit:['chars','words','lines']};
+ function meta(c){try{return c instanceof CompItem&&c.comment.indexOf(MARK)===0?JSON.parse(c.comment.substr(MARK.length)):null;}catch(e){return null;}}
+ function setMeta(c,m){c.comment=MARK+JSON.stringify(m);}
+ function effect(layer,name,type,value,items){var fx=layer.property('ADBE Effect Parade').addProperty(type||'ADBE Slider Control'),index=layer.property('ADBE Effect Parade').numProperties;if(items){fx.property(1).setPropertyParameters(items);fx=layer.property('ADBE Effect Parade').property(index);}fx.name=name;fx.property(1).setValue(value);}
+ function descriptors(params){var list=[],k,j,v,opts;for(k in params)if(params.hasOwnProperty(k)){v=params[k];if(typeof v==='number')list.push({key:k,name:'Preset - '+k,type:'number'});else if(/^#[0-9a-f]{6}$/i.test(String(v)))list.push({key:k,name:'Preset - '+k,type:'color'});else if(k==='bezier'&&v){for(j in v)if(v.hasOwnProperty(j))list.push({key:k,sub:j,name:'Curva - '+j,type:'number'});}else if(typeof v==='string'){opts=choices[k]||(/Direction$/.test(k)?['start','end','center','to-center']:/DelayMode$/.test(k)?['manual','chain']:null);if(opts&&opts.length){opts=opts.slice(0);var found=false;for(j=0;j<opts.length;j++)if(opts[j]===v)found=true;if(!found)opts.push(v);list.push({key:k,name:'Preset - '+k,type:'enum',choices:opts});}}}return list;}
+ function color(s){return[parseInt(s.substr(1,2),16)/255,parseInt(s.substr(3,2),16)/255,parseInt(s.substr(5,2),16)/255];}
+ function install(layer,m){var i,d,v,j;for(i=0;i<globalFields.length;i++)effect(layer,globalFields[i][0],null,globalFields[i][1]);for(i=0;i<m.fields.length;i++){d=m.fields[i];v=d.sub?m.options.params[d.key][d.sub]:m.options.params[d.key];if(d.type==='color')effect(layer,d.name,'ADBE Color Control',color(v));else if(d.type==='enum'){for(j=0;j<d.choices.length;j++)if(d.choices[j]===v)break;effect(layer,d.name,'ADBE Dropdown Control',j+1,d.choices);}else effect(layer,d.name,null,v);}}
+ function driver(c,m){if(!m.external)return c.layer(m.driverName);var receiving=app.project.itemByID(m.external.compId),i;if(!(receiving instanceof CompItem))throw Error('No se encuentra la composición del controlador de texto.');for(i=1;i<=receiving.numLayers;i++)if((m.external.layerId?receiving.layer(i).id===m.external.layerId:receiving.layer(i).comment===DRIVER+c.id))return receiving.layer(i);throw Error('No se encuentra el controlador de texto.');}
+ function state(c){var m=meta(c);if(!m)return null;var layer=driver(c,m),p=JSON.parse(JSON.stringify(m.options.params)),i,d,v,text=layer.property('ADBE Text Properties').property('ADBE Text Document').value.text;
+  for(i=0;i<m.fields.length;i++){d=m.fields[i];var prop=layer.property('ADBE Effect Parade').property(d.name).property(1);if(prop.numKeys)throw Error('Los parámetros Preset se ajustan sin keyframes. Para animar con keys utiliza los controles Global.');v=prop.value;if(d.type==='color'){var h='#';for(var j=0;j<3;j++)h+=('0'+Math.round(Math.max(0,Math.min(1,v[j]))*255).toString(16)).slice(-2);v=h;}else if(d.type==='enum')v=d.choices[Math.max(0,Math.min(d.choices.length-1,Math.round(v)-1))];if(d.sub)p[d.key][d.sub]=v;else p[d.key]=v;}
+  var options=JSON.parse(JSON.stringify(m.options));options.params=p;options.text=String(text).replace(/\r\n?/g,'\n');var signature=JSON.stringify({text:options.text,params:p});return{id:c.id,signature:signature,applied:m.applied,options:options,name:c.name};
+ }
+ function identify(){var c=app.project.activeItem,i,l,m;if(!(c instanceof CompItem))return null;if(meta(c))return c;var ls=c.selectedLayers;for(i=0;i<ls.length;i++){l=ls[i];if(l.comment&&l.comment.indexOf(DRIVER)===0){var item=app.project.itemByID(Number(l.comment.substr(DRIVER.length)));if(meta(item))return item;}if(l.source&&meta(l.source))return l.source;}return null;}
+ function owned(raw,except){var out=[],i,item;for(i=1;i<=app.project.numItems;i++){item=app.project.item(i);if(item!==except&&item.parentFolder===raw.parentFolder&&item instanceof CompItem)out.push(item.id);}return out;}
+ function create(raw,data,options,receiving){var duration=raw.duration,c=app.project.items.addComp('YaguaTool Lab · '+data.name,data.width,data.height,1,duration,data.fps);c.parentFolder=raw.parentFolder;
+  try{
+  var opts=data.renderOptions||{data:{name:data.name,pack:data.pack,kind:''},params:data.parameters,text:data.text,baseColor:'#ffffff',fontSize:data.fontSize,sequence:!!data.sequence,holdMs:data.holdMs||500,presetId:data.id};
+  var m={cacheIds:owned(raw,c),options:opts,fields:descriptors(opts.params),driverName:'TEXTO - editar aqui',cacheName:'MOTION - cache original',applied:JSON.stringify({text:data.text,params:opts.params})},input=c.layers.addText(data.text);input.name=m.driverName;input.enabled=false;input.guideLayer=true;input.comment=DRIVER+c.id;install(input,m);
+  var cache=c.layers.add(raw);cache.name=m.cacheName;
+  var prefix='var C=thisComp.layer('+JSON.stringify(m.driverName)+');';
+  cache.transform.position.expression=prefix+'value+[C.effect("Global - X")(1),C.effect("Global - Y")(1)];';
+  cache.transform.scale.expression=prefix+'value*C.effect("Global - Escala %")(1)/100;';cache.transform.rotation.expression=prefix+'value+C.effect("Global - Rotacion")(1);';cache.transform.opacity.expression=prefix+'value*C.effect("Global - Opacidad %")(1)/100;';
+  var blur=cache.property('ADBE Effect Parade').addProperty('ADBE Gaussian Blur 2');blur.property(1).expression=prefix+'Math.max(0,C.effect("Global - Blur")(1));';
+  cache.locked=true;setMeta(c,m);
+  if(options.insert){var instance=receiving.layers.add(c);instance.startTime=receiving.time;instance.name='YaguaTool Lab · '+data.name;var external=receiving.layers.addText(data.text);external.name='TEXTO - '+data.name+' - '+c.id;external.startTime=receiving.time;external.enabled=false;external.guideLayer=true;external.comment=DRIVER+c.id;install(external,m);
+   var ref='comp('+JSON.stringify(receiving.name)+').layer('+JSON.stringify(external.name)+')';input.property('ADBE Text Properties').property('ADBE Text Document').expression=ref+'.text.sourceText;';
+   var effects=input.property('ADBE Effect Parade');for(var i=1;i<=effects.numProperties;i++)effects.property(i).property(1).expression=ref+'.effect('+JSON.stringify(effects.property(i).name)+')(1);';
+   m.external={compId:receiving.id,layerId:external.id};setMeta(c,m);for(i=1;i<=receiving.numLayers;i++)receiving.layer(i).selected=false;external.selected=true;receiving.openInViewer();
+  }else{input.selected=true;c.openInViewer();}
+  m.applied=state(c).signature;setMeta(c,m);return c;
+  }catch(error){if(external)try{external.remove();}catch(ignoreExternal){}if(instance)try{instance.remove();}catch(ignoreInstance){}try{c.remove();}catch(ignoreComp){}throw error;}
+ }
+ function cleanup(folder,except,ids){if(!folder)return;try{var changed=true,i,item;while(changed){changed=false;for(i=folder.numItems;i>=1;i--){item=folder.item(i);var ours=false;for(var n=0;n<(ids||[]).length;n++)if(ids[n]===item.id)ours=true;if(ours&&item!==except&&item instanceof CompItem&&item.usedIn.length===0){item.remove();changed=true;}}}if(folder.numItems===0)folder.remove();}catch(ignoreCleanup){}}
+ Animix.api.ytLabRigState=function(){var c=identify();return{data:c?state(c):null};};
+ Animix.api.ytLabRigUpdate=function(o){var c=app.project.itemByID(o.id),m=meta(c);if(!m)throw Error('El rig ya no existe.');var before=state(c);if(before.signature!==o.signature)return{msg:'Hay cambios más recientes; se actualizarán en la siguiente sincronización.',data:{stale:true}};
+  var oldIds=m.cacheIds||[],oldDuration=c.duration,uses=c.usedIn||[],instances=[],ui,li;for(ui=0;ui<uses.length;ui++)for(li=1;li<=uses[ui].numLayers;li++){var use=uses[ui].layer(li);if(use.source===c&&!use.locked&&use.stretch>0&&Math.abs(use.outPoint-(use.startTime+oldDuration*use.stretch/100))<uses[ui].frameDuration)instances.push(use);}
+  var data=YaguaHost.read(new File(o.path)),raw=null,old=c.layer(m.cacheName).source,oldFolder=old.parentFolder,viewer=app.project.activeItem;
+  try{raw=YaguaNativeLab.safeBuild(data,{cacheOnly:true});if(raw.parentFolder!==c.parentFolder)raw.parentFolder.parentFolder=c.parentFolder;var cache=c.layer(m.cacheName);cache.locked=false;try{cache.replaceSource(raw,false);c.duration=raw.duration;cache.outPoint=raw.duration;}finally{cache.locked=true;}for(ui=0;ui<instances.length;ui++){instances[ui].outPoint=instances[ui].startTime+raw.duration*instances[ui].stretch/100;if(instances[ui].containingComp.duration<instances[ui].outPoint)instances[ui].containingComp.duration=instances[ui].outPoint;}
+   // Keep a stable wrapper ID and user-controlled layers/effects; only the render cache changes.
+   m.options=data.renderOptions;m.cacheIds=owned(raw,c);m.applied=o.signature;setMeta(c,m);cleanup(oldFolder,c,oldIds);if(viewer instanceof CompItem)viewer.openInViewer();return{msg:'Motion Lab sincronizado: '+c.name,data:{id:c.id}};
+  }finally{if(o.temporary)try{var f=new File(o.path);if(f.fsName.indexOf(Folder.temp.fsName)===0&&f.name.indexOf('YaguaTool_Lab_')===0)f.remove();}catch(ignoreFile){}}
+ };
+ return{create:create,meta:meta,state:state};
+})();
+
+YaguaHostBoot.modules.push("lab-editable.jsx");
+} catch (yaguaModuleError) {
+YaguaHostBoot.errors.push("lab-editable.jsx: "+String(yaguaModuleError.message||yaguaModuleError)+" (line "+String(yaguaModuleError.line||"?")+")");
+}
+
 if(typeof Animix==="undefined"||!Animix) { var Animix={}; }
-Animix.yaguaVersion="3.0.1";
+Animix.yaguaVersion="3.1.0";
 Animix.yaguaHealth=function(){
- var required=["text","removeText","tempDir","ytLabBuild","ytLabDefault","ytFluidCreate","ytFluidPreview","ytCarouselCreate","ytCarouselSources","ytCurveApply","ytSaveJSON"],missing=[],i;
+ var required=["text","removeText","tempDir","ytLabBuild","ytLabDefault","ytFluidCreate","ytFluidPreview","ytCarouselCreate","ytCarouselSources","ytCurveApply","ytSaveJSON","ytLabRigState","ytLabRigUpdate","ytSocialComp","ytBounceCurve"],missing=[],i;
  for(i=0;i<required.length;i++)if(!Animix.api||typeof Animix.api[required[i]]!=="function")missing.push(required[i]);
  var root=typeof YaguaHost!=="undefined"&&YaguaHost?YaguaHost.root:"",ready=typeof Animix.call==="function"&&missing.length===0&&YaguaHostBoot.errors.length===0&&!!root;
- return {ok:ready,msg:ready?"Host 3.0.1 cargado y verificado":"No se ha podido cargar el host completo: "+YaguaHostBoot.errors.join(" | ")+(missing.length?" | faltan: "+missing.join(", "):"")+(!root?" | ruta de extensión no disponible":""),
- data:{version:"3.0.1",root:root,host:typeof app!=="undefined"?String(app.name):"",hostVersion:typeof app!=="undefined"?String(app.version):"",modules:YaguaHostBoot.modules,errors:YaguaHostBoot.errors,missing:missing}};
+ return {ok:ready,msg:ready?"Host 3.1.0 cargado y verificado":"No se ha podido cargar el host completo: "+YaguaHostBoot.errors.join(" | ")+(missing.length?" | faltan: "+missing.join(", "):"")+(!root?" | ruta de extensión no disponible":""),
+ data:{version:"3.1.0",root:root,host:typeof app!=="undefined"?String(app.name):"",hostVersion:typeof app!=="undefined"?String(app.version):"",modules:YaguaHostBoot.modules,errors:YaguaHostBoot.errors,missing:missing}};
 };
 if(typeof $!=="undefined"&&$.global){$.global.Animix=Animix;$.global.YaguaHost=typeof YaguaHost!=="undefined"?YaguaHost:null;}

@@ -1,22 +1,16 @@
-# YaguaTool 3.0.1
+# YaguaTool 3.1.0
 
-Corrección de carga nativa y comunicación con AE: [CORRECCION_3.0.1.md](CORRECCION_3.0.1.md). El host se carga por ruta absoluta, sin #include, y se verifica antes de ejecutar los botones.
+[Descargar YaguaTool 3.1.0](YaguaTool_3.1.0.zip) · [Novedades y uso de controles](NOVEDADES_3.1.0.md) · [Capturas](previews/3.1.0)
 
-[Descargar YaguaTool 3.0.1](YaguaTool_3.0.1.zip) · [Corrección de conexión](CORRECCION_3.0.1.md)
+Extensión CEP para After Effects 2024/2025. Mantiene el arranque nativo verificado de 3.0.1 y todos los módulos anteriores.
 
-Extensión CEP para After Effects 2024/2025. Evolución de Yaguanimix 2.8.0 con la misma interfaz de estudio y los módulos anteriores conservados.
+- Motion Lab: texto primero, sin zoom/barridos, nuevo controlador de texto y efectos para editar sin recorrer la estructura interna.
+- Global: expresiones nativas inmediatas. Preset/texto: sincronización automática con el motor original mientras YaguaTool esté abierto, tras finalizar el ajuste.
+- Tarjetas compactas con nombres en Texto y Movimiento; Carrousel debajo de Biblioteca.
+- Captura original de Fluido incluida, diez formatos de composición RRSS y Curva Rebote real.
 
-- TEXT: barridos de color desplegados, selección sin saltos de scroll y Motion Lab v0.9 integrado con sus 33 presets, previews en directo, curvas, sliders y exportaciones.
-- Complex text animation: efecto fluido desde el AEP original, importado al proyecto y duplicado con dependencias independientes. Preview de fotogramas renderizados por AE.
-- Carrousel: Línea editorial y Órbita suave; generador con preview, tres puntos interactivos y controles nativos editables para imágenes y composiciones.
-- Tools: curvas Bézier propias, gestión de keyframes, utilidades de formas/composiciones y biblioteca/editor de scripts y expresiones.
+Consulta [NOVEDADES_3.1.0.md](NOVEDADES_3.1.0.md) para uso, funcionamiento de la sincronización y límites; [GUIA_INSTALACION.md](GUIA_INSTALACION.md) para instalar. Instala GeistLab760.ttf para Motion Lab e Impact para el AEP Fluido.
 
-Extrae el ZIP completo y consulta [GUIA_INSTALACION.md](GUIA_INSTALACION.md). Instala la fuente `assets/fonts/GeistLab760.ttf` para Motion Lab nativo; el fluido original utiliza Impact.
+Los nuevos controles se añaden a nuevas creaciones de 3.1.0. No se modifican las animaciones que ya existan en tus proyectos. Los parámetros Preset se ajustan sin keyframes; Global sí admite animación por keys y funciona sin el panel. Pausa la sincronización para recorrer Deshacer.
 
-## Validación
-
-Comparación con el panel Motion Lab original: 33 presets y 15.793 valores numéricos coincidentes. Pruebas de interfaz en 60 combinaciones de sección/anchura; scroll estable y pruebas simuladas de adaptadores nativos. Consulta [VALIDACION_3.0.0.md](VALIDACION_3.0.0.md) y [MATRIZ_FUNCIONES_3.0.0.md](MATRIZ_FUNCIONES_3.0.0.md).
-
-After Effects no está disponible en el entorno de desarrollo: la ejecución real y la equivalencia visual del render nativo requieren revisión en AE. El motor web original está conservado; el bake nativo a 60 fps utiliza transformaciones editables, pero las fuentes, el desenfoque SVG/Gaussian y el color pueden mostrar diferencias de rasterizado. La preview de Fluido necesita AE y escritura de archivos habilitada.
-
-Se mantienen identificadores CEP y datos locales anteriores para actualizar la instalación. Los prefijos internos Animix y nombres de controles existentes se conservan por compatibilidad. Los documentos con versiones anteriores son históricos.
+Pruebas de interfaz, ES3, bundle/puente y adaptadores con APIs simuladas superadas. La comprobación real de render y ejecución en After Effects sigue pendiente en este entorno. El AEP original y la captura facilitada se distribuyen sin modificaciones. Documentos de versiones anteriores conservados como historial.

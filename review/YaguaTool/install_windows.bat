@@ -1,13 +1,13 @@
 @echo off
 setlocal EnableExtensions DisableDelayedExpansion
 chcp 65001 >nul
-title YaguaTool 3.0.1 - After Effects 2024/2025
+title YaguaTool 3.1.0 - After Effects 2024/2025
 set "YAGUA_SOURCE=%~dp0"
 set "YAGUA_EXTDIR=%APPDATA%\Adobe\CEP\extensions"
 set "YAGUA_DEST=%YAGUA_EXTDIR%\YaguaTool"
 set "YAGUA_STAGE=%YAGUA_EXTDIR%\YaguaTool.__installing__"
 set "YAGUA_BACKUP=%USERPROFILE%\Documents\YaguaTool_Backups\install-%RANDOM%-%RANDOM%"
-echo YaguaTool 3.0.1 - Cierra After Effects antes de continuar.
+echo YaguaTool 3.1.0 - Cierra After Effects antes de continuar.
 if not exist "%YAGUA_SOURCE%CSXS\manifest.xml" goto failure
 if not exist "%YAGUA_SOURCE%jsx\yagua-host.jsx" goto failure
 if not exist "%YAGUA_EXTDIR%" mkdir "%YAGUA_EXTDIR%"

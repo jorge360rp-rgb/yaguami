@@ -3,7 +3,7 @@ window.YaguaComplex=(function(){
  function stop(){if(dispose)dispose();dispose=null;}
  function render(root,api){
   stop();var h=api.h,v=api.S.fluid=api.S.fluid||{customize:false,text1:'YAGUANO',text2:'MOTION'},dead=false,raf=0,images=[],data=null,epoch=null,paused=false;
-  var stage=h('div',{class:'fluid-preview-stage'},h('div',{class:'fluid-placeholder'},h('b',{},'Efecto fluido'),h('span',{},'Preview del proyecto original de AE'))),image=h('img',{hidden:true,alt:'Efecto fluido renderizado por After Effects'}),status=h('p',{class:'desc',role:'status'},'Renderiza la preview para ver los efectos originales, sin reconstrucciones.');stage.appendChild(image);
+  var stage=h('div',{class:'fluid-preview-stage'},h('div',{class:'fluid-placeholder'},h('img',{src:'assets/fluido-reference.png',alt:'Referencia del efecto fluido facilitada por el autor',class:'fluid-reference'}),h('span',{},'Referencia estática · renderiza en AE para ver la animación'))),image=h('img',{hidden:true,alt:'Efecto fluido renderizado por After Effects'}),status=h('p',{class:'desc',role:'status'},'Renderiza la preview para ver los efectos originales, sin reconstrucciones.');stage.appendChild(image);
   var card=h('div',{class:'card'},h('div',{class:'preview-head'},h('b',{},'Vapor Text · original AE2024')),stage,status);root.appendChild(card);
   function message(t){status.textContent=t;}
   var native=h('button',{class:'btn pri',onclick:function(){
