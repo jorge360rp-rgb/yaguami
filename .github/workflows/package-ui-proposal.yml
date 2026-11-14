@@ -1,0 +1,36 @@
+name: Package UI proposal only
+on:
+  push:
+    branches: ['codex/yaguano-ui-3.1.0-proposal']
+    paths: ['.ui-proposal-upload/**']
+permissions:
+  contents: write
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/yaguano-ui-3.1.0-proposal
+      - name: Verify standalone proposal
+        shell: python
+        run: |
+          import pathlib,hashlib,zipfile
+          data=b''.join(p.read_bytes() for p in sorted(pathlib.Path('.ui-proposal-upload').glob('part-*')))
+          assert len(data)==18006699
+          assert hashlib.sha256(data).hexdigest()=='d05de8f1539e7e825cf5096fb176a4c3f23746d8ab3072bc8834256b3bead2bd'
+          target=pathlib.Path('propuestas/ui-3.1.0/Yaguano_UI_Propuesta_3.1.0.zip')
+          target.parent.mkdir(parents=True,exist_ok=True)
+          target.write_bytes(data)
+          with zipfile.ZipFile(target) as z:
+            assert z.testzip() is None
+            assert 'pendiente de aprobación' in z.read('Yaguano_UI_Propuesta/README.md').decode()
+            assert 'Yaguano_UI_Propuesta/mock/index.html' in z.namelist()
+      - name: Publish proposal without changing extension
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add propuestas/ui-3.1.0/Yaguano_UI_Propuesta_3.1.0.zip
+          git rm -r .ui-proposal-upload .github/workflows/package-ui-proposal.yml
+          git commit -m "Package reviewable UI proposal; product remains unchanged"
+          git push origin HEAD:codex/yaguano-ui-3.1.0-proposal
