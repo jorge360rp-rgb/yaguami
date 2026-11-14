@@ -1,0 +1,211 @@
+ROL
+Actúa como director/a de diseño de producto (UI/UX) con experiencia en Apple Human Interface Guidelines, sistemas de diseño y paneles de herramientas creativas para After Effects, y como ingeniero/a front-end especializado/a en interfaces responsive. Rediseña COMPLETAMENTE la interfaz de toda la extensión CEP "YaguaTool" versión 3.1.0 (repositorio jorge360rp-rgb/yaguami) con un único sistema de diseño coherente, elegante, intuitivo y plenamente responsive, y con la marca Yaguano muy presente.
+
+PUNTO DE PARTIDA
+- Parte de la versión 3.1.0 más reciente del repositorio (rama principal o rama de release). Antes de nada, confirma con el historial de git qué incluye, y que contiene la corrección de la carga nativa que bloqueaba los botones de After Effects (PR #4). Si no la incluye, aplícala primero o avísame.
+- El código de la interfaz está en review/YaguaTool (o la carpeta equivalente de la 3.1.0; localízala). No toques el ZIP de la versión ni los AEP originales.
+- La versión mostrada en el panel y en el manifest debe salir de una única constante: 3.1.0.
+
+CORRECCIÓN PRIORITARIA (BUG CONOCIDO)
+- En la sección "Complex Text Animation" (dentro de TEXT), una imagen se sale de su recuadro a medida que se reduce el tamaño de la ventana de la extensión. Reprodúcelo, encuentra la causa raíz y corrígelo de forma definitiva, no con un parche puntual.
+- Causas probables a revisar: imagen con ancho o alto fijo en px o sin max-width; contenedor flex/grid sin min-width:0; recuadro sin control de overflow; posiciones absolutas; transform/scale sobre la imagen; ausencia de aspect-ratio; paddings o bordes que se suman al ancho; imagen con display inline y alturas heredadas.
+- Solución esperada: el recuadro con width:100%, min-width:0 y aspect-ratio (o altura fluida); la imagen con display:block, max-width:100% y height:auto (o width:100%; height:100%; object-fit: contain o cover según el caso); sin tamaños fijos; el recorte (overflow:hidden) aplicado a un elemento hijo, no al que lleva el halo.
+- Aplica la misma corrección de forma preventiva a TODAS las imágenes, previews PNG renderizados por After Effects, miniaturas, vídeos, canvas y SVG de la extensión (regla base: img, video, canvas, svg { max-width: 100%; } y contenedores con min-width:0).
+- Añade una prueba automática de regresión para este caso concreto y documenta la causa en DECISIONES_UI.md.
+
+ALCANCE (todas las pantallas)
+- Barra lateral y navegación.
+- TEXT: barridos desplegados, Motion Lab (presets, previews, curvas, anclaje, controles, exportaciones), creación nativa a 60 fps, texto fluido (previews PNG renderizados por AE) y Complex Text Animation.
+- Carrousel: Línea editorial, Órbita suave, tres puntos interactivos, preview y controles de imágenes/composiciones.
+- Tools: curvas propias, clipboard/timing de keys, utilidades de formas/comps, biblioteca y editor de scripts/expresiones.
+- Cualquier sección o herramienta nueva de la 3.1.0 que no aparezca aquí: inclúyela en el inventario.
+- Configuración, estados vacíos, carga, errores y diálogos.
+
+OBJETIVO
+La interfaz más intuitiva, fácil, homogénea y robusta posible: un usuario nuevo entiende cada sección sin explicación, un usuario experto llega a cualquier preset en 2 clics, y todo funciona bien en cualquier tamaño de ventana. Debe sentirse a la vez moderna (estética Apple) y propia de After Effects.
+
+RESPONSIVE (verificación obligatoria)
+Diseño
+- Diseño fluido: ningún contenedor con ancho fijo en px; usa unidades relativas, flex/grid con min-width:0, minmax(), clamp(), aspect-ratio y max-width.
+- Chromium 99: NO uses container queries (@container) ni :has(); usa media queries o ResizeObserver cuando haga falta.
+- Define y documenta el ancho mínimo soportado (objetivo: usable hasta ~220-240 px de ancho) y el comportamiento en tamaños intermedios. Puntos de ruptura recomendados: ≤260, ≤340, ≤480, ≤720 y >720 px; considera también altura baja (≤480 px) y paneles apaisados.
+- Reglas: cero scroll horizontal en toda la interfaz; ningún elemento se sale de su recuadro ni se superpone con otro; texto largo con overflow-wrap o ellipsis (con título/tooltip); filas de controles que se apilan cuando no caben; barra lateral que se compacta a solo iconos; barra de acción siempre visible; objetivos de pulsación mínimos de 28-32 px; sliders y valores que siguen siendo utilizables.
+- El halo, el movimiento y la marca también deben comportarse bien en tamaños pequeños (el wordmark y el pie se simplifican, nunca se rompen).
+Pruebas manuales
+- Panel acoplado y flotante, redimensionado continuo, escalado de interfaz del sistema al 100/125/150/200 %, pantallas pequeñas y grandes, tema oscuro de After Effects.
+Comprobación automática (herramienta de desarrollo, no se incluye en la extensión)
+- Script (Playwright, Puppeteer o equivalente) que abra cada sección en una matriz de anchuras [220, 240, 280, 320, 360, 420, 520, 720, 1000, 1400] × alturas [360, 560, 800] y compruebe: document.documentElement.scrollWidth <= clientWidth; que ningún elemento sobrepase los límites de su contenedor; que ninguna imagen o preview sea mayor que su recuadro; que no haya texto recortado sin ellipsis ni elementos superpuestos; y que se guarden capturas.
+- Intégralo en la matriz de pruebas existente (sección/anchura), ampliándola, y haz que falle si hay desbordamientos.
+- Entrega un informe con capturas por sección y por anchura, y la lista de problemas encontrados y corregidos.
+
+BIBLIOTECA DE REFERENCIAS (úsalas como conocimiento y criterio; no copies código ni activos literalmente; si un enlace no abre, búscalo por su nombre)
+A) Sistemas de diseño
+- Apple Human Interface Guidelines: developer.apple.com/design/human-interface-guidelines (Sidebars, Segmented controls, Sliders, Toggles, Pop-up buttons, Disclosure controls, Lists and tables, Typography, Color, Dark Mode, Motion, Accessibility, Layout). Plantillas: developer.apple.com/design/resources
+- Adobe Spectrum: spectrum.adobe.com (Slider, Switch, Action group, Side navigation, Accordion, Tooltip, Color, Motion). Código: github.com/adobe/spectrum-css, github.com/adobe/spectrum-web-components, github.com/adobe/react-spectrum. Es el lenguaje visual de Adobe y el más cercano al entorno de After Effects.
+- Vercel Geist: vercel.com/geist. GitHub Primer: primer.style y github.com/primer/primitives. IBM Carbon: carbondesignsystem.com y github.com/carbon-design-system/carbon. Microsoft Fluent 2: fluent2.microsoft.design y github.com/microsoft/fluentui. Material Design 3: m3.material.io (movimiento: m3.material.io/styles/motion). Atlassian: atlassian.design. Shopify Polaris: polaris.shopify.com.
+B) Componentes y tokens (anatomía, accesibilidad, API)
+- Radix Primitives: github.com/radix-ui/primitives (Slider, Switch, Toggle Group, Collapsible, Popover, Tooltip, Tabs). shadcn/ui: github.com/shadcn-ui/ui y ui.shadcn.com.
+- WAI-ARIA Authoring Practices: w3.org/WAI/ARIA/apg. Inclusive Components: inclusive-components.design.
+- Catálogos: component.gallery, designsystemsrepo.com.
+- Tokens: Design Tokens Community Group (designtokens.org), Style Dictionary (github.com/amzn/style-dictionary) y Open Props (open-props.style, github.com/argyleink/open-props) como referencia de estructura de tokens, easing, sombras y espaciado.
+C) Tipografía e iconos
+- Inter: rsms.me/inter y github.com/rsms/inter (licencia OFL, empaquetable). SF Pro no se puede incluir en la extensión.
+- Geist (fuente): github.com/vercel/geist-font (ya se usa GeistLab760 en Lab). IBM Plex Mono o JetBrains Mono como opción para valores numéricos tabulares.
+- Escalas tipográficas fluidas: type-scale.com y utopia.fyi.
+- Iconos de trazo uniforme: Lucide (lucide.dev, github.com/lucide-icons/lucide), Phosphor (phosphoricons.com), Tabler Icons (tabler.io/icons), Iconoir (iconoir.com). No uses los SF Symbols de Apple.
+D) Color y accesibilidad
+- Adobe Leonardo: leonardocolor.io y github.com/adobe/leonardo, para generar la escala del azul claro con contraste objetivo (calcula offline y escribe valores hex/rgba; no uses oklch en el CSS final).
+- Radix Colors: radix-ui.com/colors. WCAG 2.2 AA: w3.org/WAI/WCAG22/quickref. Comprobador: webaim.org/resources/contrastchecker. Guía de tema oscuro de Material: m2.material.io/design/color/dark-theme.html
+E) Movimiento, halo y efectos
+- Easing y curvas: easings.net, cubic-bezier.com, developer.mozilla.org/en-US/docs/Web/CSS/easing-function
+- Animación web: Emil Kowalski (emilkowal.ski y animations.dev), Josh Comeau (joshwcomeau.com/animation/css-transitions), web.dev/animations-guide, interfaces.rauno.me (Web Interface Guidelines).
+- Halo de borde (solo como inspiración de efecto; están hechos en React/Tailwind, reimplementa en CSS puro): Magic UI "Border Beam" y "Shine Border" (magicui.design, github.com/magicuidesign/magicui), Aceternity UI "Moving Border" y "Glowing Effect" (ui.aceternity.com), Uiverse (uiverse.io, revisa la licencia de cada pieza).
+- Técnica: MDN @property y MDN sobre máscaras CSS (mask, -webkit-mask-composite).
+F) Layout responsive
+- MDN: CSS Grid, Flexbox ("min-width: auto" y por qué los hijos flex/grid se desbordan), aspect-ratio, object-fit, clamp(), minmax(). web.dev/learn/css y web.dev/responsive-web-design-basics. Every Layout (every-layout.dev) para patrones fluidos. Josh Comeau, "The Rules of Flexbox/Grid" (joshwcomeau.com).
+G) UX y principios
+- Laws of UX: lawsofux.com. 10 heurísticas de Nielsen: nngroup.com/articles/ten-usability-heuristics. Refactoring UI: refactoringui.com.
+H) Ecosistema After Effects / CEP (convenciones y entorno, no estilo visual)
+- Adobe CEP: github.com/Adobe-CEP/CEP-Resources y github.com/Adobe-CEP/Samples (CSInterface, manifest, tamaños de panel, temas del host).
+- Paneles nativos de After Effects: Propiedades, Controles de efectos, Essential Graphics y Línea de tiempo. Respeta sus convenciones (etiqueta a la izquierda, valor a la derecha, grupos plegables, arrastrar para cambiar valores, doble clic para escribir) y cómo se comportan al redimensionar.
+- Premiere Pro: Essential Graphics y Controles de efectos.
+- Paneles de animación populares como referencia de flujo y organización de presets, no de estilo: Motion 4, Flow, Overlord, Animation Composer (Mister Horse). No copies su aspecto.
+I) Inspiración visual (mirar, no copiar)
+- Linear (linear.app), Raycast (raycast.com), Vercel (vercel.com), Stripe (stripe.com), Framer (framer.com), apple.com. Búsquedas sugeridas en dribbble.com y behance.net: "dark UI plugin panel", "creative tool sidebar", "glass border glow UI".
+J) Verificación (herramientas de desarrollo; no se incluyen en la extensión)
+- caniuse.com y MDN Browser Compatibility para comprobar cada propiedad CSS contra Chromium ~99.
+- doiuse (github.com/anandthakker/doiuse) con browserslist "Chrome 99".
+- axe-core (github.com/dequelabs/axe-core) para accesibilidad. Playwright (playwright.dev) o Puppeteer para la matriz responsive.
+Cómo usar la biblioteca
+- Úsala como criterio de diseño; no añadas frameworks, librerías ni paso de compilación al producto. Los componentes siguen siendo HTML/CSS/JS propios y deben funcionar en el Chromium de After Effects (~v99).
+- Si no tienes acceso a internet, aplica lo que conoces de ellas y dilo.
+- Antes de implementar, entrégame una tabla "decisión → referencias (nombre + URL) → por qué" para cada sección y tipo de componente. Referencias sugeridas por tema: barra lateral (HIG Sidebars, Spectrum Side navigation); sliders y valores (Spectrum Slider, Radix Slider, paneles de AE); segmented control (HIG, Radix Toggle Group); interruptores (Spectrum Switch, Radix Switch); grupos plegables (Radix Collapsible, APG Accordion); tarjetas de preset (component.gallery, Raycast, Linear); escala de azul claro (Leonardo, Radix Colors); tokens (Style Dictionary, DTCG, Open Props); halo (Magic UI Border Beam, Aceternity Moving Border, MDN @property); movimiento (Emil Kowalski, Material Motion, easings.net); responsive (MDN Flexbox/Grid, Every Layout, Utopia).
+- Licencias: si adaptas código de una referencia, respeta su licencia y anótalo en DECISIONES_UI.md.
+
+ESTILO (Apple)
+- Elegante, limpio, con mucho aire y jerarquía clara. Conserva el tema oscuro.
+- Superficies en 3 capas (base muy oscura, elevada +4-6 % de luminosidad, interactiva +8-10 %), bordes de 1 px con ~8 % de blanco, sombras suaves.
+- COLOR DE ACENTO: azul claro. Valor base #66C2FF (rgb 102, 194, 255). Úsalo con moderación, solo para la acción principal, el estado activo/seleccionado, el foco, los interruptores y el halo. Deriva todo de él mediante variables CSS: variante clara para halo y brillos rgb(190, 230, 255), fondo de elemento seleccionado rgba(102, 194, 255, .12), borde de seleccionado rgba(102, 194, 255, .55), resplandor rgba(102, 194, 255, .12-.25). Texto sobre fondo de acento en casi negro (#0D0E11) para mantener el contraste WCAG AA. No introduzcas otros colores de acento; los estados de error, aviso y éxito usan colores semánticos discretos y desaturados, solo cuando hace falta.
+- Rejilla de 4/8 px. Radios concéntricos: controles 8 px, tarjetas 12-14 px, paneles 16-20 px.
+- Tipografía: pila -apple-system, "SF Pro Text", Inter, "Segoe UI", sans-serif; 13 px cuerpo, 11-12 px secundario, 15-17 px títulos; pesos 400/500/600; cifras tabulares en los valores.
+- Jerarquía de texto por opacidad: principal 100 %, secundario ~60 %, terciario ~40 %, deshabilitado ~25 %.
+- Controles de estilo Apple: segmented control para 2-4 opciones, sliders finos con valor editable a la derecha, desplegables tipo pop-up, foco con anillo del color de acento (2 px, con separación). Que además se comporten como en After Effects (arrastrar el valor para ajustarlo, doble clic para escribirlo).
+- Interruptores: NO verdes estilo iOS; pastilla con el color de acento (azul claro).
+- Iconos de trazo 1.5 px, cuadrícula 16/20 px, mismo peso en toda la app.
+
+HALO DE LUZ EN BORDES (botones y recuadros)
+Objetivo: que botones, tarjetas, paneles, campos y desplegables tengan un halo de luz en el borde extremadamente sutil, elegante y premium, como un reflejo de luz que recorre un borde de cristal. Si se nota a primera vista, está demasiado fuerte.
+Comportamiento
+- Cobertura: TODOS los elementos interactivos y recuadros (botones, opciones de segmented control, interruptores, tarjetas de preset, cabeceras de grupo, filas de herramientas, navegación lateral), no solo algunos. En pantallas táctiles, donde no existe hover, el halo se muestra tenue en reposo y se intensifica al tocar.
+- Reposo: borde de 1 px con ~8 % de blanco y brillo apenas perceptible (opacidad del halo 0-10 %).
+- Hover: aparece un arco de luz suave (~60-90° de ancho) que recorre el borde lentamente (6-8 s por vuelta, linear), opacidad máxima ~35-70 % según el tamaño del elemento (más visible en elementos pequeños). Entrada 240 ms, salida 400 ms.
+- Foco de teclado: halo más definido en azul claro más anillo de foco de 2 px (la accesibilidad va primero).
+- Pulsado: el halo se intensifica un instante y el elemento baja a escala 0.97 (120 ms).
+- Botón principal (uno por pantalla): único elemento con halo ambiental permanente, muy lento (8-10 s por vuelta). Sobre el fondo azul claro el arco es blanco para que se vea.
+- Deshabilitado: sin halo.
+- Color derivado del acento: rgb(190, 230, 255). Usa rgba() explícitos (no color-mix).
+- Resplandor exterior opcional: 0 0 12-18 px del acento al 12-25 %, solo en hover/foco y en el botón principal.
+Implementación (Chromium ~v99)
+- El anillo debe quedar sobre el propio borde del elemento (pseudo-elemento con inset: -1px), no dentro. overflow:hidden recorta el halo: evítalo en elementos que lo llevan y aplícalo a un hijo.
+- Borde con degradado cónico en ::before/::after con pointer-events:none y máscara que deje solo el anillo de 1 px: -webkit-mask + -webkit-mask-composite: xor (no uses mask-composite sin prefijo).
+- Rotación con @property --halo-angle (<angle>) y @keyframes.
+- Una sola clase reutilizable (.halo) y variables CSS (--halo-color, --halo-opacity, --halo-speed, --halo-radius).
+- Rendimiento: el halo se anima solo en el elemento con hover/foco y en el botón principal; en reposo, en escritorio, va estático. NO animes cientos de halos a la vez (por ejemplo todas las tarjetas de preset en reposo). Anima solo opacity, transform y la variable de ángulo; evita animar box-shadow o filter en bucle y evita backdrop-filter en elementos numerosos.
+- Respeta prefers-reduced-motion: sin rotación, solo un cambio suave de opacidad.
+
+MOVIMIENTO Y NAVEGACIÓN (muy suave y elegante)
+Principio: todo movimiento debe sentirse fluido, casi imperceptible, nunca brusco ni llamativo. Nada rebota ni se estira.
+- Curvas: cubic-bezier(0.32, 0.72, 0, 1) para despliegues y entradas; cubic-bezier(0.4, 0, 0.2, 1) para hover y pulsación.
+- Duraciones: hover/pulsación 120-240 ms; desplegar/plegar grupos 280-360 ms; popovers y desplegables 180-220 ms (fundido + escala 0.98→1); tooltips con retardo de 400 ms y fundido de 150 ms.
+- Entrada más rápida que salida; salidas con fundido suave.
+- Navegación interna (familias, grupos plegables, avanzado, pestañas internas): fundido con deslizamiento mínimo (≤ 6 px).
+- scroll-behavior: smooth y mantener la posición de scroll al seleccionar presets o barridos.
+- Chromium 99: no animes grid-template-rows (técnica 0fr→1fr); para alturas usa max-height con medida real o transform/opacity. Anima solo transform, opacity y variables registradas con @property.
+- EXCEPCIÓN QUE SE MANTIENE: al cambiar de sección desde la barra lateral, menú y contenido permanecen estáticos, sin ninguna animación. Se conserva la animación actual de despliegue de las familias de presets (TEXT).
+- Coherencia: todos los tiempos y curvas salen de variables CSS (--ease-out, --ease-standard, --dur-fast, --dur-base, --dur-slow); prohibido poner duraciones sueltas en componentes.
+
+AUTONOMÍA DE DISEÑO
+Tienes libertad total para decidir la organización: orden, agrupación, jerarquía, etiquetas, tamaños, qué se muestra y qué se pliega. Decide como responsable de diseño; solo consúltame si una decisión implica quitar una función o cambiar su comportamiento.
+
+PRINCIPIOS PARA DECIDIR
+1. Homogeneidad: la misma función se presenta igual en TEXT, Carrousel y Tools.
+2. Plantilla de pantalla común: cabecera (título + acciones secundarias) → vista previa (si aplica) → controles principales → opciones avanzadas plegadas → barra de acción fija con la acción principal.
+3. Jerarquía por frecuencia de uso: lo habitual arriba y visible; lo ocasional agrupado y plegable; lo raro en "Avanzado".
+4. Agrupación por intención del usuario (por ejemplo Movimiento, Aspecto, Tiempo), con el mismo nombre y orden de grupos en todos los presets.
+5. Una sola acción principal por pantalla, en color de acento.
+6. Divulgación progresiva: no mostrar 30 controles a la vez.
+7. Feedback inmediato: vista previa o estado visible tras cada cambio; confirmación breve tras aplicar.
+8. Lenguaje consistente: mismas palabras para lo mismo, etiquetas cortas, verbos para acciones y sustantivos para ajustes; unifica el idioma de toda la interfaz.
+9. Reduce esfuerzo: valores por defecto sensatos, buscador visible en listas largas, favoritos y recientes, atajos donde aporten.
+10. Navegación predecible: el usuario siempre sabe dónde está y cómo volver; barra lateral ordenada por frecuencia de uso.
+11. Robustez: la interfaz nunca se rompe al cambiar de tamaño; todo contenido tiene un contenedor que lo limita.
+
+BRANDING YAGUANO (marca visible y nombres coherentes)
+La marca es "Yaguano". Todo el panel y todo lo que genere debe respirar esa marca, sin perder elegancia.
+1) Texto por defecto
+- Todo texto que cree o previsualice el panel con las animaciones (capas de texto nuevas, textos de ejemplo, previews, miniaturas de presets, estados vacíos) debe decir por defecto "Yaguano" o "Yaguano Motion".
+- Criterio: "Yaguano Motion" como texto por defecto general; "Yaguano" cuando el efecto lo pida por legibilidad (efectos por letra, tracking, textos cortos o muy grandes). Documenta la decisión por efecto.
+- Si el usuario ya tiene una capa de texto seleccionada, NO sobrescribas su contenido: el texto por defecto solo se usa en capas nuevas y en previews. El usuario puede editarlo después.
+2) Nombres de elementos creados en After Effects (prefijo de marca + nombre del efecto, patrón único)
+- Capa de texto: "Yaguano · <Efecto>"; capa de forma: "Yaguano Shape · <Efecto>"; nulo/control: "Yaguano Ctrl · <Efecto>"; capa de ajuste: "Yaguano Adj · <Efecto>"; sólido/fondo: "Yaguano BG".
+- Composición: "Yaguano Motion · <Efecto>"; precomposición: "Yaguano Pre · <Efecto>".
+- Carpetas del proyecto: "Yaguano Motion" con subcarpetas ("Yaguano Text", "Yaguano Carousel", "Yaguano Fluid"…).
+- Controles de expresión y animators creados: "Yaguano · <Parámetro>".
+- Duplicados con numeración ordenada: "Yaguano · <Efecto> 02", "03"…
+- Usa un separador compatible con After Effects en cualquier idioma del sistema.
+3) Lo que NO se renombra
+- NO cambies los nombres de los efectos, presets, secciones ni controles de la interfaz (Smart Reveal, Órbita suave, Línea editorial, etc.). El branding solo afecta a textos por defecto, composiciones, capas, carpetas y otros elementos generados.
+- Los AEP originales (p. ej. el del texto fluido) permanecen intactos; solo se renombran las copias independientes que cree el panel.
+4) Seguridad del cambio
+- Centraliza el naming en un único módulo/constantes (JS de interfaz y JSX de host): BRAND = "Yaguano", BRAND_MOTION = "Yaguano Motion" y funciones que construyan los nombres. Prohibido escribir nombres sueltos por el código.
+- Antes de renombrar, audita todos los lugares donde el código busca capas, comps, carpetas o propiedades POR NOMBRE y actualízalos para usar el módulo. Mantén compatibilidad con proyectos que ya contienen los nombres antiguos (busca por ambos).
+- No rompas expresiones, vínculos ni presets guardados que dependan de nombres existentes.
+- Documenta en NAMING.md la tabla de patrones con ejemplos y añade pruebas que verifiquen los nombres generados.
+5) Marca visible en el panel (elegante, sin saturar)
+- Wordmark "Yaguano" tipográfico (Inter semibold, tracking ligero) en la cabecera, siempre visible y alineado con la plantilla común; usa el logotipo existente si lo hay.
+- Pie discreto con "Yaguano Motion · v3.1.0" (versión desde la constante única); nombre de la extensión y del panel en el menú de After Effects (manifest.xml) como "Yaguano" / "Yaguano Motion".
+- Textos de ejemplo, previews, estados vacíos, pantallas de carga y confirmaciones con la palabra Yaguano cuando sea natural (p. ej. "Yaguano Motion aplicado").
+- Instaladores, ZIP, documentación y capturas con el mismo nombre de marca.
+- Regla de elegancia: la marca está presente en todas partes, pero nunca grande ni repetida de forma agresiva: una presencia clara por pantalla (cabecera + contenido por defecto) y el resto discreto.
+
+REGLAS ESTRICTAS
+- Compatibilidad con el Chromium de After Effects (~v99): no uses :has(), @container, color-mix(), oklch/lab, dvh/svh ni scrollbar-width. Verifica cada propiedad nueva con caniuse/MDN o con doiuse.
+- No rompas el puente CEP ni las llamadas evalScript a los .jsx de host (ExtendScript, ES3). No los modifiques salvo que sea imprescindible (p. ej. para el naming) y avísame.
+- No elimines ninguna función ni IDs/clases que use el JS; si renombras algo, actualiza todas sus dependencias.
+- No cambies los datos ni los valores de los presets, ni los presets guardados del usuario.
+- Mantén las fuentes necesarias (GeistLab760 para Lab, Impact para Fluido) y no cargues fuentes ni recursos de internet en el producto: empaqueta Inter localmente.
+- Sin frameworks, librerías ni paso de compilación en el producto final.
+
+UX Y ACCESIBILIDAD
+- Estados completos en todos los controles: hover, pulsado, foco con teclado, deshabilitado, vacío y carga.
+- Contraste WCAG AA (incluido el texto sobre el azul claro), objetivos cómodos de pulsar, navegación por teclado completa siguiendo los patrones de WAI-ARIA APG.
+
+ENTREGABLES DE DECISIÓN (antes de tocar el código)
+- Diagnóstico del bug de la imagen en Complex Text Animation: causa raíz y solución propuesta.
+- Inventario de pantallas y resumen de problemas de UX actuales (máx. 10), incluyendo los problemas de responsive detectados.
+- Mapa de la información de cada sección: qué cambia respecto a hoy y por qué.
+- Catálogo de componentes (botón, slider, grupo plegable, tarjeta de preset, fila de ajuste, segmented control, contenedor de imagen/preview, estado vacío…) con aspecto, tamaño, comportamiento responsive y halo.
+- Sistema de diseño en variables CSS: color (con la escala derivada del azul claro), tipografía, espaciado, radios, sombras, movimiento y puntos de ruptura.
+- Tabla de referencias usadas por decisión (nombre + URL).
+- DECISIONES_UI.md: cada cambio relevante, el problema que resuelve y la alternativa descartada; tabla de movimiento (elemento, duración, curva, propiedad animada); tabla "elemento → patrón de nombre → ejemplo"; lista de sitios donde se muestra la marca; lista de funciones reubicadas; licencias de lo adaptado.
+- Capturas o clip del halo en reposo, hover, foco y pulsado para validar la sutileza.
+- NAMING.md.
+Espera mi aprobación de todo esto antes de implementar.
+
+PROCESO DE IMPLEMENTACIÓN
+Por fases: corrección del bug de la imagen y base responsive → sistema (variables, halo, movimiento, naming) → barra lateral → TEXT (incluida Complex Text Animation) → Carrousel → Tools → configuración → detalles. Tras cada fase, ejecuta las pruebas existentes (scroll, puente CEP simulado, matriz de secciones/anchuras) y la matriz responsive ampliada, y actualiza VALIDACION y MATRIZ_FUNCIONES si existen. No pases a la siguiente fase si hay desbordamientos.
+
+COMPROBACIÓN FINAL DE COHERENCIA (al terminar cada sección)
+- ¿Usa la plantilla común de pantalla?
+- ¿Cada componente sale del catálogo, sin variantes sueltas?
+- ¿Mismos espaciados, radios, tipografía y halo que el resto?
+- ¿El azul claro solo aparece donde corresponde (acción principal, estado activo, foco, interruptores, halo)?
+- ¿Mismas palabras para las mismas acciones?
+- ¿Hay una sola acción principal?
+- ¿Los elementos generados siguen el naming Yaguano y la marca es visible sin saturar?
+- ¿Todos los movimientos usan las variables de tiempo y curva?
+- ¿Ninguna imagen, preview o elemento se sale de su recuadro en ninguna de las anchuras de la matriz, sin scroll horizontal?
+- ¿Se ve y funciona bien en panel acoplado, flotante y con escalado del sistema 100-200 %?
+- ¿Pasa la verificación de compatibilidad con Chromium 99 y la de accesibilidad?
+- ¿Se entiende sin leer documentación?
+Termina con la lista de cambios, el informe responsive y qué probar a mano en After Effects.

@@ -1,0 +1,8 @@
+{
+  "sectionNavigation": "static",
+  "accordion": "Enter toggles",
+  "tabs": "arrow roving focus",
+  "switch": "Space toggles",
+  "reducedMotion": "no running animations",
+  "pass": true
+}

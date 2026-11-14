@@ -1,0 +1,14 @@
+{
+  "browser": "Chrome 99",
+  "tool": "doiuse 6",
+  "warnings": [
+    {
+      "feature": "css-masks",
+      "message": "/workspace/design.css:4:1608: CSS Masks only partially supported by: Chrome (99) (css-masks)"
+    },
+    {
+      "feature": "css-masks",
+      "message": "/workspace/design.css:4:1685: CSS Masks only partially supported by: Chrome (99) (css-masks)"
+    }
+  ]
+}
